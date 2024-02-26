@@ -28,9 +28,11 @@
             </li>
 
             <li>
-                <button onclick="href='#'">
-                    <i class="bi bi-inbox"></i> Inbox
-                </button>
+                <a class="emailSideBar" href="/MentoringPlatform/pages/inbox-email.php">
+                    <button href='#'>
+                        <i class="bi bi-inbox"></i> Inbox
+                    </button>
+                </a>
             </li>
 
             <li>

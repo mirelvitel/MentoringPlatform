@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-  <title>Mentoring Platform</title>
-  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/frontPage.css" rel="stylesheet">
-  <link href="../css/calendar.css" rel="stylesheet">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mentoring Platform</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/frontPage.css" rel="stylesheet">
+    <link href="../css/calendar.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
-  <?php include('../components/header.html'); ?>
+    <?php include('../components/header.html'); ?>
 
     <div class="container">
         <div class="row">
@@ -25,17 +25,17 @@
                             <li class="nav-item">
                                 <div class="sideNavItems">
                                     <i class="bi bi-box item"></i>
-                                    <a href="#" class="nav-link item">Home</a>
+                                    <a href="/MentoringPlatform/pages/main.php" class="nav-link item">Home</a>
                                 </div>
                             </li>
                             <h1 id="tools">TOOLS</h1>
                             <div class="sideNavItems">
                                 <i class="bi bi-envelope"></i>
-                                <a href="#" class="nav-link item">Email</a>
+                                <a href="/MentoringPlatform/pages/inbox-email.php" class="nav-link item">Email</a>
                             </div>
                             <div class="sideNavItems">
                                 <i class="bi bi-calendar4"></i>
-                                <a href="#" class="nav-link item">Calendar</a>
+                                <a href="/MentoringPlatform/pages/calendar.php" class="nav-link item">Calendar</a>
                             </div>
                             <div class="sideNavItems">
                                 <i class="bi bi-bar-chart"></i>
@@ -61,20 +61,20 @@
                             <button class="btn btn-light ms-2">&lt;</button>
                             <button class="btn btn-light ms-2">&gt;</button>
                         </div>
-                        
+
                     </div>
-                
+
                 </div>
                 <table class="calendar-table">
                     <thead>
                         <tr>
-                        <th>Sun</th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thu</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,13 +130,13 @@
             </div>
         </div>
     </div>
-  <footer>
-    <!-- Footer content here -->
+    <footer>
+        <!-- Footer content here -->
 
-    <?php include('../components/footer.html'); ?>
-  </footer>
+        <?php include('../components/footer.html'); ?>
+    </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

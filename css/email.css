@@ -235,3 +235,8 @@ color: white;
 width: auto; /* Adjust as needed */
 height: 20px; /* Adjust as needed */
 }
+
+.emailSideBar {
+  text-decoration: none;
+  color: #000;
+}

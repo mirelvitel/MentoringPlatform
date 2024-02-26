@@ -30,11 +30,11 @@
               <h1 id="tools">TOOLS</h1>
               <div class="sideNavItems">
                 <i class="bi bi-envelope"></i>
-                <a href="/MentoringPlatform/pages/email.php" class="nav-link item">Email</a>
+                <a href="/MentoringPlatform/pages/inbox-email.php" class="nav-link item">Email</a>
               </div>
               <div class="sideNavItems">
                 <i class="bi bi-calendar4"></i>
-                <a href="#" class="nav-link item">Calendar</a>
+                <a href="/MentoringPlatform/pages/calendar.php" class="nav-link item">Calendar</a>
               </div>
               <div class="sideNavItems">
                 <i class="bi bi-bar-chart"></i>
@@ -166,44 +166,7 @@
               <p>Thank you!</p>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header boxBorderHeader">
-              <div class="d-flex align-items-center">
-                <svg class="userIcon" viewBox="0 0 47 47" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="23.5" cy="23.5" r="23.5" fill="#D9D9D9" />
-                  <path d="M20.2114 21.9335C19.2401 21.9335 18.4306 21.5693 17.7831 20.8408C17.1355 20.1123 16.8792 19.2624 17.0141 18.291L17.5402 14.3248C17.7561 12.7868 18.4576 11.5117 19.6448 10.4993C20.832 9.48698 22.2215 8.98134 23.8134 8.98242C25.4053 8.98242 26.7949 9.4886 27.9821 10.5009C29.1692 11.5133 29.8708 12.7879 30.0866 14.3248L30.6127 18.291C30.7477 19.2624 30.4913 20.1123 29.8438 20.8408C29.1962 21.5693 28.3868 21.9335 27.4154 21.9335H20.2114ZM10.8623 34.8846V30.3518C10.8623 29.4344 11.0987 28.5909 11.5714 27.8214C12.0441 27.0519 12.6711 26.4653 13.4525 26.0617C15.1254 25.2253 16.8252 24.5977 18.552 24.1789C20.2788 23.7602 22.0326 23.5513 23.8134 23.5524C25.5942 23.5524 27.348 23.7618 29.0748 24.1806C30.8016 24.5993 32.5014 25.2264 34.1743 26.0617C34.9568 26.4664 35.5844 27.0535 36.0571 27.823C36.5298 28.5926 36.7656 29.4355 36.7645 30.3518V34.8846H10.8623Z" fill="white" />
-                </svg>
-                <div>
-                  <h6 class="mb-0 infoUsername">Claudia Musterfrau</h6>
-                  <small class="text-muted">Wednesday, 6 January 2024 at 13:50 AM</small>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <p>Hello everyone!</p>
-              <p>I am looking for a new mentor to help me with ...</p>
-              <p>Thank you!</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header boxBorderHeader">
-              <div class="d-flex align-items-center">
-                <svg class="userIcon" viewBox="0 0 47 47" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="23.5" cy="23.5" r="23.5" fill="#D9D9D9" />
-                  <path d="M20.2114 21.9335C19.2401 21.9335 18.4306 21.5693 17.7831 20.8408C17.1355 20.1123 16.8792 19.2624 17.0141 18.291L17.5402 14.3248C17.7561 12.7868 18.4576 11.5117 19.6448 10.4993C20.832 9.48698 22.2215 8.98134 23.8134 8.98242C25.4053 8.98242 26.7949 9.4886 27.9821 10.5009C29.1692 11.5133 29.8708 12.7879 30.0866 14.3248L30.6127 18.291C30.7477 19.2624 30.4913 20.1123 29.8438 20.8408C29.1962 21.5693 28.3868 21.9335 27.4154 21.9335H20.2114ZM10.8623 34.8846V30.3518C10.8623 29.4344 11.0987 28.5909 11.5714 27.8214C12.0441 27.0519 12.6711 26.4653 13.4525 26.0617C15.1254 25.2253 16.8252 24.5977 18.552 24.1789C20.2788 23.7602 22.0326 23.5513 23.8134 23.5524C25.5942 23.5524 27.348 23.7618 29.0748 24.1806C30.8016 24.5993 32.5014 25.2264 34.1743 26.0617C34.9568 26.4664 35.5844 27.0535 36.0571 27.823C36.5298 28.5926 36.7656 29.4355 36.7645 30.3518V34.8846H10.8623Z" fill="white" />
-                </svg>
-                <div>
-                  <h6 class="mb-0 infoUsername">Claudia Musterfrau</h6>
-                  <small class="text-muted">Wednesday, 6 January 2024 at 13:50 AM</small>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <p>Hello everyone!</p>
-              <p>I am looking for a new mentor to help me with ...</p>
-              <p>Thank you!</p>
-            </div>
-          </div>
+
           <div class="card">
             <div class="card-header boxBorderHeader">
               <div class="d-flex align-items-center">
@@ -229,7 +192,47 @@
 
       <div class="col">
         <h1>REPORTS SUMMARY</h1>
+        <div class="card report-card">
+          <div class="card-header report-card-header d-flex justify-content-between align-items-center">
+            New Users
+            <i class="bi bi-people icon-box"></i>
+          </div>
+          <div class="card-body report-card-body">
+            <div class="report-value-up">+59</div>
+            <div class="report-increase">
+              <i class="bi bi-caret-up-fill"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="card report-card">
+          <div class="card-header report-card-header d-flex justify-content-between align-items-center">
+            New Matches
+            <i class="bi bi-people icon-box"></i>
+          </div>
+          <div class="card-body report-card-body">
+            <div class="report-value-up">+27</div>
+            <div class="report-increase">
+              <i class="bi bi-caret-up-fill"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="card report-card">
+          <div class="card-header report-card-header d-flex justify-content-between align-items-center">
+            User Feedback
+            <i class="bi bi-people icon-box"></i>
+          </div>
+          <div class="card-body report-card-body">
+            <div class="report-value-down">-3.4%</div>
+            <div class="report-increase">
+              <i class="bi bi-caret-down-fill" style="color: #F44336;"></i>
+            </div>
+          </div>
+        </div>
       </div>
+
+
 
     </div>
   </div>

@@ -101,3 +101,54 @@ h1 {
 #handshakeName{
     color: #2A649D;
 }
+
+.report-card {
+    background-color: #FFF;
+    border-left: 5px solid #4CAF50; 
+    color: #333;
+    margin-bottom: 1rem;
+    margin-top: 23px;
+}
+
+.report-card-header {
+    background-color: #F7F8FA;
+    border-bottom: none;
+    font-size: 1rem;
+    color: #888888;
+}
+
+.report-card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-value-up {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.report-value-down {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #C33C38;
+}
+
+.report-increase {
+    color: #4CAF50; 
+    font-weight: bold;
+}
+
+.report-decrease {
+    color: #F44336; 
+    font-weight: bold;
+}
+
+.icon-box {
+    width: 2.5rem; 
+    height: 2.5rem; 
+    fill: currentColor;
+    padding-left: 20px;
+    padding-top: 8px;
+}
