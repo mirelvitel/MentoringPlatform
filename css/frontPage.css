@@ -3,8 +3,21 @@ body, html {
     margin: 0;
 }
 
+.navbar {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    right: 0;
+    z-index: 1030;
+}
+
 .container {
-    margin-top: 50px;
+    margin-top: 150px;
+}
+
+.sideBar {
+    position: sticky;
+    top: 0;
 }
 
 h1 {
@@ -27,6 +40,64 @@ h1 {
     font-weight: 500;
 }
 
+.btnCreate {
+    background-color: #90B30F;
+    color: white;
+}
+.btnCreate:hover {
+    background-color: #688308;
+    color: white;
+}
 
+.addFile {
+    color: #90B30F;
+    font-weight: 500;
+    width:9px;
+    height:18px;
+    fill:none;
+}
 
+#downArrow {
+    width: 15px; 
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+#news {
+    margin-left: 20px;
+}
   
+.card {
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+}
+
+.userIcon {
+    width:47px; 
+    height:47px; 
+    fill:none;
+    margin-right: 10px;
+}
+
+.infoUsername{
+    color: #90B30F;
+}
+
+.boxBorderHeader{
+    border-bottom: 1px solid #90B30F;
+}
+
+.handshakeIcon {
+    width:29px; 
+    height:29px;
+    fill:none;
+    margin-right: 10px;
+}
+
+#contentBox {
+    color: #2A649D;
+}
+
+#handshakeName{
+    color: #2A649D;
+}
