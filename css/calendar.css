@@ -1,0 +1,71 @@
+.calendar-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .row {
+    margin-bottom: 20px; /* Spacing between header and table */
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  
+  .calendar-header h2 {
+    margin: 0;
+    color: #8BB31D;
+  }
+
+  .calendar-header .btn {
+    color: #00649C; /* Color for buttons */
+    background-color: transparent; /* Removes the default background */
+    border: none; /* Removes the default border */
+  }
+  
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar-table th {
+    text-align: center;
+    padding: 10px;
+    background-color: #f3f3f3;
+  }
+  
+  .calendar-table td {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  
+  .calendar-table td:not(.empty) {
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .calendar-table td:not(.empty):hover {
+    background-color: #e3e3e3;
+  }
+  
+  .calendar-table .today {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+
+  .me-2 {
+    margin-right: .5rem; /* Bootstrap spacing for slight space between buttons */
+  }
+
+  @media (max-width: 768px) {
+    .text-md-end {
+      text-align: left;
+      margin-top: 10px; /* Add some space between the buttons and the title on small screens */
+    }
+  }
