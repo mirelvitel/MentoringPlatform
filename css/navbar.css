@@ -1,0 +1,48 @@
+/* This will apply styles for screens wider than 768px */
+@media (min-width: 769px) {
+    .navbar-expand-custom .navbar-toggler {
+      display: none; 
+    }
+  
+    .navbar-expand-custom .navbar-collapse {
+      display: flex !important; 
+      flex-basis: auto;
+    }
+
+    .navbar-expand-custom .navbar-nav {
+      display: flex;
+      flex-direction: row; 
+    }
+
+    .navbar-expand-custom .nav-item {
+      display: flex; 
+      margin-right: 0.5rem; 
+    }
+
+    .navbar-expand-custom .nav-link {
+      display: block;
+      padding: 0.5rem 1rem;
+    }
+}
+  
+/* These styles will apply to screens smaller than 769px */
+@media (max-width: 768px) {
+    .navbar-expand-custom .navbar-collapse {
+      display: none; 
+      
+    }
+  
+    .navbar-expand-custom .navbar-toggler {
+      display: inline-block; 
+    }
+  
+    /* Style for showing the dropdown when the burger is clicked */
+    .navbar-expand-custom .navbar-collapse.collapsing,
+    .navbar-expand-custom .navbar-collapse.show {
+      display: block !important; 
+    }
+}
+
+#logo {
+    width: 200px !important;
+}

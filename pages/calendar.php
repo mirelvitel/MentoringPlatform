@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/frontPage.css" rel="stylesheet">
     <link href="../css/calendar.css" rel="stylesheet">
+    <link href="../css/navbar.css" rel="stylesheet">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
@@ -17,7 +18,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col sideBar">
                 <h1>MAIN</h1>
                 <div class="col-md-2">
                     <div class="d-flex flex-column align-items-start">
@@ -51,7 +52,7 @@
             </div>
 
             <div class="col-10">
-                <h1>Calendar</h1>
+                <h1>CALENDAR</h1>
                 <div class="calendar-container">
                     <div class="row align-items-center justify-content-between">
                         <div class="col">

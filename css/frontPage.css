@@ -1,6 +1,10 @@
 body, html {
-    height: 100%;
+    min-height: 100%;
     margin: 0;
+}
+
+#logo {
+    width: 200px !important;
 }
 
 .navbar {
@@ -16,8 +20,11 @@ body, html {
 }
 
 .sideBar {
+    height: 100vh;
+    min-height: 200px;
+    position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 150px;
 }
 
 h1 {
@@ -29,6 +36,7 @@ h1 {
     display: flex;
     align-items: center;
     color: #2A649D;
+    font-size: 20px;
 }
 
 #tools {
@@ -55,12 +63,6 @@ h1 {
     width:9px;
     height:18px;
     fill:none;
-}
-
-#downArrow {
-    width: 15px; 
-    vertical-align: middle;
-    margin-right: 5px;
 }
 
 #news {
