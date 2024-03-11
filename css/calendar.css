@@ -59,6 +59,10 @@
     color: #ffffff;
   }
 
+  #calendar-title {
+    color: #00649C !important;
+  }
+
   .me-2 {
     margin-right: .5rem; /* Bootstrap spacing for slight space between buttons */
   }
