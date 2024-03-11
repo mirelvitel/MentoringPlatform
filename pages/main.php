@@ -19,9 +19,9 @@
     <div class="row">
       <?php include('../components/sidebar.html'); ?>
 
-      <div class="col-8">
+      <div class="col-md-10 col-lg-8">
         <h1 id="news">NEWS</h1>
-        <div class="container mt-4">
+        
 
           <div class="card">
             <div class="card-header d-md-flex justify-content-between align-items-center boxBorderHeader">
@@ -217,10 +217,9 @@
             </div>
           </div>
 
-        </div>
       </div>
 
-      <div class="col">
+      <div class="col-lg-2">
         <h1>REPORTS SUMMARY</h1>
         <div class="card report-card">
           <div class="card-header report-card-header d-flex justify-content-between align-items-center">

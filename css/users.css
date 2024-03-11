@@ -1,0 +1,71 @@
+.user-management-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  .user-management-box {
+    background-color: #90B30F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 8px 12px;
+    text-align: left;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  }
+  .user-management-button svg {
+    margin-left: 8px; /* Add some spacing between text and icon */
+  }
+  .user-management-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  #searchFilter {
+    border-radius: 5px;
+  }
+
+  #searchButton {
+    margin-left: 5px;
+    border: none;
+    background-color: #fff;
+  }
+
+  .input-group {
+    margin-top: 30px;
+  }
+
+  .usersTable {
+    margin-top: 50px;
+  }
+
+  .editProfile {
+    display: flex;
+    flex-direction: row; /* Change this from column to row */
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #90B30F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Adjust padding as needed */
+  }
+  .editProfile svg {
+    margin-left: 5px; /* Add some space between text and SVG */
+  }
+
+  .see-all-users{
+    background-color: #fff;
+    border: none;
+    color: #90B30F;
+  }

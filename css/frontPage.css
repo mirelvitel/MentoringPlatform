@@ -1,6 +1,8 @@
 body, html {
     min-height: 100%;
     margin: 0;
+    box-sizing: border-box;
+    overflow: auto;
 }
 
 #logo {
@@ -19,11 +21,19 @@ body, html {
     margin-top: 150px;
 }
 
+.content {
+    margin-top: 10px;
+}
+
 .sideBar {
     height: 30vh;
     position: -webkit-sticky;
     position: sticky;
     top: 150px;
+}
+
+.sideBarNoMain {
+    margin-top: 20px;
 }
 
 h1 {
@@ -66,6 +76,7 @@ h1 {
 
 #news {
     margin-left: 20px;
+    margin-bottom: 15px;
 }
   
 .card {
@@ -157,4 +168,4 @@ h1 {
 .avatar{
     width:200px;
     height:200px;
-    }
+}
