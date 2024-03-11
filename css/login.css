@@ -1,0 +1,125 @@
+
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    margin-top: -50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 797px;
+    height: 622px;
+    background-color: #72777A;
+    border-radius: 4px;
+    background: rgba(114, 119, 122, 0.7);
+}
+
+h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 25px;
+    margin-top: -300px;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+.login-input {
+    position: absolute;
+    width: 368px;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: none;
+    margin-top: -100px;
+    padding: 0 15px;
+    /* Padding inside the input fields */
+}
+
+.login-input[type="text"] {
+    top: 621px;
+    /* Adjust if necessary to fit your design */
+}
+
+.login-input[type="password"] {
+    top: 679px;
+    /* Adjust if necessary to fit your design */
+}
+
+.login-button {
+    position: absolute;
+    width: 93.43px;
+    height: 30px;
+    top: 750px;
+    margin-top: -100px;
+    background: #8BB31D;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.login-footer {
+    position: absolute;
+    top: 700px; /* This positions the footer within the container */
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* This styles any text inside .login-footer but not the links */
+.login-footer p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 25px;
+    color: #FFFFFF;
+    margin: 5px 0;
+}
+
+/* This specifically targets the 'Forgotten your username or password?' link */
+.forgot-link {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 200; /* Light weight for the forgotten password link */
+    color: #FFFFFF;
+    text-decoration: none;
+    display: block; /* Default display value for anchors */
+    margin: 5px 0; /* Space around the link */
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* This targets the 'New? Register HERE' link and gives it a heavier weight */
+.register-link {
+    position: absolute;
+    width: 322px;
+    height: 35px;
+    left: calc(50% - 161px); /* Centers the link within its container */
+    top: 60px; /* Position below the 'Forgotten your username or password?' link */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600; /* Bold weight for the registration link */
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    text-decoration: none; /* Removing underline from links */
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
