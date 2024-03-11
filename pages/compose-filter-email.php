@@ -31,7 +31,7 @@
 
       <li>
         <a class="emailSideBar" href="/MentoringPlatform/pages/inbox-email.php">
-          <button href='#'>
+          <button>
             <i class="bi bi-inbox"></i> Inbox
           </button>
         </a>
@@ -60,11 +60,14 @@
 
     <!-- filter content here -->
     <div class="content">
-  <div class="email-filter">
+    <div class="email-filter">
     <div class="filter-header">
-   
-
-      <h3><i class="bi bi-chevron-left"></i> FILTER <i class="bi bi-sliders icon"></i></h3>
+    <h3>
+    <a class="emailSideBar" href="/MentoringPlatform/pages/compose-email.php">
+            <i class="bi bi-chevron-left"></i>
+    </a> FILTER <i class="bi bi-sliders icon"></i>
+    </h3>
+    
     </div>
     <form id="filter-form">
       <div class="filter-row">
