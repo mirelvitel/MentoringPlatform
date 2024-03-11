@@ -111,12 +111,19 @@ if(isset($_POST['action']) && $_POST['action'] == 'get_calendar') {
             <div class="col-10">
             <h1>CALENDAR</h1>
             <div class="calendar-navigation d-flex justify-content-between align-items-center mb-3">
-                <h2 id="calendar-title" class="m-0" style="color: #00649C;"><?php echo date('F Y'); ?></h2>
-                <div>
+                <div class="col-8">
+                    <h2 id="calendar-title" class="m-0" style="color: #00649C;"><?php echo date('F Y'); ?></h2>
+                </div>
+                <div class="col-3">
+                    <select id="calendar-view" class="form-select" aria-label="Select calendar view" onchange="updateView()">
+                        <option value="monthly" selected>Monthly</option>
+                        <option value="weekly">Weekly</option>
+                    </select>
+                </div>
+                <div class="col-2 end-text">
                     <button id="prev-month" class="btn btn-light ms-2">&lt;</button>
                     <button id="next-month" class="btn btn-light ms-2">&gt;</button>
                 </div>
-                
             </div>
             <div class="calendar-container">
                 <!-- The PHP script will insert the calendar table here -->
@@ -174,7 +181,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'get_calendar') {
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save Event</button>
+            <button type="submit" form="create-event-form" class="btn btn-primary">Save Event</button>
         </div>
         </div>
     </div>
@@ -251,7 +258,6 @@ if(isset($_POST['action']) && $_POST['action'] == 'get_calendar') {
             // Optionally, you could clear the form fields after saving the event
             $('#create-event-form')[0].reset();
             });
-
 
         });
     </script>
