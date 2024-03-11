@@ -1,0 +1,16 @@
+.editProfile {
+    display: flex;
+    flex-direction: row; /* Change this from column to row */
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #90B30F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    float: right;
+    padding: 5px 10px; /* Adjust padding as needed */
+  }
+  .editProfile svg {
+    margin-left: 5px; /* Add some space between text and SVG */
+  }

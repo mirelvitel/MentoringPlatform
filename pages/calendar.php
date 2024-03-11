@@ -18,38 +18,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col sideBar">
-                <h1>MAIN</h1>
-                <div class="col-md-2">
-                    <div class="d-flex flex-column align-items-start">
-                        <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
-                                <div class="sideNavItems">
-                                    <i class="bi bi-box item"></i>
-                                    <a href="/MentoringPlatform/pages/main.php" class="nav-link item">Home</a>
-                                </div>
-                            </li>
-                            <h1 id="tools">TOOLS</h1>
-                            <div class="sideNavItems">
-                                <i class="bi bi-envelope"></i>
-                                <a href="/MentoringPlatform/pages/inbox-email.php" class="nav-link item">Email</a>
-                            </div>
-                            <div class="sideNavItems">
-                                <i class="bi bi-calendar4"></i>
-                                <a href="/MentoringPlatform/pages/calendar.php" class="nav-link item">Calendar</a>
-                            </div>
-                            <div class="sideNavItems">
-                                <i class="bi bi-bar-chart"></i>
-                                <a href="#" class="nav-link item">Reports</a>
-                            </div>
-                            <div class="sideNavItems">
-                                <i class="bi bi-people"></i>
-                                <a href="#" class="nav-link item">Users</a>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php include('../components/sidebar.html'); ?>
 
             <div class="col-10">
                 <h1>CALENDAR</h1>
