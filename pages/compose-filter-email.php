@@ -62,7 +62,9 @@
     <div class="content">
   <div class="email-filter">
     <div class="filter-header">
-      <h3>FILTER</h3>
+   
+
+      <h3><i class="bi bi-chevron-left"></i> FILTER <i class="bi bi-sliders icon"></i></h3>
     </div>
     <form id="filter-form">
       <div class="filter-row">
@@ -101,7 +103,7 @@
       </div>
 
       <div class="filter-actions">
-        <button type="submit" class="btn-search">Search</button>
+        <button type="submit" class="btn-search">Search <i class="bi bi-search"></i></button>
         <button type="button" class="btn-add">Add</button>
       </div>
     </form>
