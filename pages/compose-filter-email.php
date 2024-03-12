@@ -58,60 +58,60 @@
     </ul>
   </aside>
 
-    <!-- filter content here -->
-    <div class="content">
+  <!-- filter content here -->
+  <div class="content">
     <div class="email-filter">
-    <div class="filter-header">
-    <h3>
-    <a class="emailSideBar" href="/MentoringPlatform/pages/compose-email.php">
+      <div class="filter-header">
+        <h3>
+          <a class="emailSideBar" href="/MentoringPlatform/pages/compose-email.php">
             <i class="bi bi-chevron-left"></i>
-    </a> FILTER <i class="bi bi-sliders icon"></i>
-    </h3>
-    
-    </div>
-    <form id="filter-form">
-      <div class="filter-row">
-      <div class="activity-label">Activity*</div>
-    <div class="activity-options">
-      <label><input type="radio" name="activity" value="active"> Active</label>
-      <label><input type="radio" name="activity" value="non-active"> Non Active</label>
-      <label><input type="radio" name="activity" value="all" checked> All</label>
-    </div>
-      </div>
-      <div class="filter-row">
-      <div class="role-label">Role*</div>
-        <div class="role-options">
-          <label><input type="radio" name="role" value="mentor"> Mentor</label>
-          <label><input type="radio" name="role" value="mentee"> Mentee</label>
-          <label><input type="radio" name="role" value="all" checked> All</label>
-        </div>
-      </div>
-      <div class="filter-group">
-        <label>Faculty</label>
-        <select name="faculty">
-          <option value="computer-science">Computer Science</option>
-        </select>
-        <label>Group</label>
-        <select name="group">
-          <option value="select">Select</option>
-        </select>
-        <label>Semester</label>
-        <select name="semester">
-          <option value="select">Select</option>
-        </select>
-        <label>More Examples</label>
-        <select name="more examples">
-          <option value="select">Select</option>
-        </select>
-      </div>
+          </a> FILTER <i class="bi bi-sliders icon"></i>
+        </h3>
 
-      <div class="filter-actions">
-        <button type="submit" class="btn-search">Search <i class="bi bi-search"></i></button>
-        <button type="button" class="btn-add">Add</button>
       </div>
-    </form>
+      <form id="filter-form">
+        <div class="filter-row">
+          <div class="activity-label">Activity*</div>
+          <div class="activity-options">
+            <label><input type="radio" name="activity" value="active"> Active</label>
+            <label><input type="radio" name="activity" value="non-active"> Non Active</label>
+            <label><input type="radio" name="activity" value="all" checked> All</label>
+          </div>
+        </div>
+        <div class="filter-row">
+          <div class="role-label">Role*</div>
+          <div class="role-options">
+            <label><input type="radio" name="role" value="mentor"> Mentor</label>
+            <label><input type="radio" name="role" value="mentee"> Mentee</label>
+            <label><input type="radio" name="role" value="all" checked> All</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label>Faculty</label>
+          <select name="faculty">
+            <option value="computer-science">Computer Science</option>
+          </select>
+          <label>Group</label>
+          <select name="group">
+            <option value="select">Select</option>
+          </select>
+          <label>Semester</label>
+          <select name="semester">
+            <option value="select">Select</option>
+          </select>
+          <label>More Examples</label>
+          <select name="more examples">
+            <option value="select">Select</option>
+          </select>
+        </div>
+
+        <div class="filter-actions">
+          <button type="submit" class="btn-search">Search <i class="bi bi-search"></i></button>
+          <button type="button" class="btn-add">Add</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
   <footer>
     <!-- Footer content here -->

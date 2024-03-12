@@ -85,10 +85,10 @@
                         <div class="input-group">
                             <input type="email" id="to" class="form-control" placeholder="mentorin@technikum-wien.at">
                             <span class="icon-group">
-                            <a class="emailSideBar" href="/MentoringPlatform/pages/compose-filter-email.php">
                                 <img src="../screenshots/magnifying-glass.svg" alt="Search" class="input-group-icon">
-                            </a>
-                                <img src="../screenshots/friends.svg" alt="Friends" class="input-group-icon">
+                                <a class="emailSideBar" href="/MentoringPlatform/pages/compose-filter-email.php">
+                                    <img src="../screenshots/friends.svg" alt="Friends" class="input-group-icon">
+                                </a>
                             </span>
                         </div>
                     </div>

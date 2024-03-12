@@ -29,7 +29,6 @@
 @media (max-width: 768px) {
     .navbar-expand-custom .navbar-collapse {
       display: none; 
-      
     }
   
     .navbar-expand-custom .navbar-toggler {
@@ -41,6 +40,10 @@
     .navbar-expand-custom .navbar-collapse.show {
       display: block !important; 
     }
+
+    .navbar-expand-custom .navbar-collapse.show .bi-person-circle {
+      margin-left: 50px; /* Adjust margin-left as needed */
+  }
 }
 
 #logo {
