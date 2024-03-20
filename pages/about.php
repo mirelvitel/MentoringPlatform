@@ -35,13 +35,13 @@
                 <p>Detailed Information:</p>
             
                 <div class="document-link">
-                    <a href="path_to_detailed_information_2023" class="pdf-link">
+                    <a href="#" class="pdf-link">
                         <i class="bi bi-file-earmark-pdf"></i>
                         WeCanTechMentoring Ausschreibung 2023
                     </a>
                 </div>
                 <div class="document-link">
-                    <a href="path_to_mentoring_call_2023" class="pdf-link">
+                    <a href="#" class="pdf-link">
                     <i class="bi bi-file-earmark-pdf"></i>
                     WeCanTech Mentoring Call 2023
                     </a>
