@@ -1,0 +1,44 @@
+h1 {
+    color: #8BB31D;
+    font-weight: 500;
+    font-size: 36px;
+}
+
+.about-container {
+    padding-top: 20px;
+}
+
+p {
+    padding-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+  
+.document-link {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+  
+.pdf-link {
+    color: #00649C;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between the icon and the text */
+}
+  
+.pdf-link:hover {
+    text-decoration: underline; /* underline on hover */
+}
+  
+.bi-file-earmark-pdf {
+    font-size: 3em;
+    color: #00649C;
+}
+  
