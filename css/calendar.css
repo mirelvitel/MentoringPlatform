@@ -1,75 +1,111 @@
 .calendar-container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 20px;
-  }
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
 
-  .row {
-    margin-bottom: 20px; /* Spacing between header and table */
-  }
+.row {
+  margin-bottom: 20px; /* Spacing between header and table */
+}
   
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-  }
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
   
-  .calendar-header h2 {
-    margin: 0;
-    color: #8BB31D;
-  }
+.calendar-header h2 {
+  margin: 0;
+  color: #8BB31D;
+}
 
-  .calendar-header .btn {
-    color: #00649C; /* Color for buttons */
-    background-color: transparent; /* Removes the default background */
-    border: none; /* Removes the default border */
-  }
+.calendar-header .btn {
+  color: #00649C; /* Color for buttons */
+  background-color: transparent; /* Removes the default background */
+  border: none; /* Removes the default border */
+}
   
-  .calendar-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
   
-  .calendar-table th {
-    text-align: center;
-    padding: 10px;
-    background-color: #f3f3f3;
-  }
+.calendar-table th {
+  text-align: center;
+  padding: 10px;
+  background-color: #f3f3f3;
+}
   
-  .calendar-table td {
-    text-align: center;
-    padding: 15px;
-    border-bottom: 1px solid #f3f3f3;
-  }
+.calendar-table td {
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid #f3f3f3;
+}
   
-  .calendar-table td:not(.empty) {
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+.calendar-table td:not(.empty) {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
   
-  .calendar-table td:not(.empty):hover {
-    background-color: #e3e3e3;
-  }
+.calendar-table td:not(.empty):hover {
+  background-color: #e3e3e3;
+}
   
-  .calendar-table .today {
+.calendar-table .today {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+#calendar-title {
+  color: #00649C !important;
+}
+
+.me-2 {
+  margin-right: .5rem; /* Bootstrap spacing for slight space between buttons */
+}
+
+@media (max-width: 768px) {
+  .text-md-end {
+    text-align: left;
+    margin-top: 10px; /* Add some space between the buttons and the title on small screens */
+  }
+}
+
+.event-indicator {
+  width: 5px;
+  height: 5px;
+  background-color: #00649C;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.has-event .event-title {
+    font-weight: bold;
+}
+
+.has-event .event-time {
+    font-size: 0.8em;
+}
+
+.event {
     background-color: #007bff;
-    color: #ffffff;
-  }
+    color: white;
+    padding: 2px 4px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 2px 0;
+}
 
-  #calendar-title {
-    color: #00649C !important;
-  }
+/* Add styles for the event indicator in the monthly calendar */
+.day .event-indicator {
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+    margin: auto;
+}
 
-  .me-2 {
-    margin-right: .5rem; /* Bootstrap spacing for slight space between buttons */
-  }
-
-  @media (max-width: 768px) {
-    .text-md-end {
-      text-align: left;
-      margin-top: 10px; /* Add some space between the buttons and the title on small screens */
-    }
-  }
