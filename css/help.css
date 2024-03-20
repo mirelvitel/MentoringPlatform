@@ -1,0 +1,53 @@
+h1 {
+    color: #8BB31D;
+    font-weight: 500;
+    font-size: 36px;
+}
+
+h3 {
+    font-weight: 300;
+}
+
+.support-box {
+    border: 1px solid #dee2e6; /* Bootstrap's border color for a fine line */
+    border-radius: .25rem; /* Bootstrap's default border-radius */
+    padding: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075); /* Optional: adds a slight shadow for depth */
+    margin-top: 1rem;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #495057;
+    background-color: #e9ecef;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.accordion-button {
+    color: #495057;
+    background-color: #e9ecef;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.accordion-button::after {
+    filter: invert(60%) sepia(0%) saturate(0%) hue-rotate(186deg) brightness(94%) contrast(89%);
+}
+
+.btn-custom {
+    background-color: #00649C;
+    
+}
+
+.btn-custom:hover {
+    background-color: #014d78;
+    border-color: #024c76;
+    color: white;
+}
+
+.btn-custom {
+    color: white;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
