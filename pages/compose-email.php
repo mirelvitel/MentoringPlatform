@@ -86,8 +86,7 @@
                             <input type="email" id="to" class="form-control" placeholder="mentorin@technikum-wien.at">
                             <span class="icon-group">
                                 <img src="../screenshots/magnifying-glass.svg" alt="Search" class="input-group-icon">
-                                <a class="emailSideBar" href="/MentoringPlatform/pages/compose-filter-email.php">
-                                    <img src="../screenshots/friends.svg" alt="Friends" class="input-group-icon">
+                                    <img src="../screenshots/friends.svg" alt="Friends" id="openFilterModal" class="input-group-icon">
                                 </a>
                             </span>
                         </div>
@@ -117,14 +116,87 @@
             </div>
         </div>
     </main>
+    <div id="filterModal" class="modal" style="display: none;">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" id="closeFilterModal">&times;</span>
+      <h3>FILTER <i class="bi bi-sliders"></i></h3>
+      <!-- Insert your filter form here -->
+      
+      <form id="filter-form">
+      <div class="filter-row">
+          <div class="activity-label">Activity*</div>
+          <div class="activity-options">
+            <label><input type="radio" name="activity" value="active"> Active</label>
+            <label><input type="radio" name="activity" value="non-active"> Non Active</label>
+            <label><input type="radio" name="activity" value="all" checked> All</label>
+          </div>
+        </div>
+        
+        <div class="filter-row">
+          <div class="role-label">Role*</div>
+          <div class="role-options">
+            <label><input type="radio" name="role" value="mentor"> Mentor</label>
+            <label><input type="radio" name="role" value="mentee"> Mentee</label>
+            <label><input type="radio" name="role" value="all" checked> All</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label>Faculty</label>
+          <select name="faculty">
+            <option value="computer-science">Computer Science</option>
+          </select>
+          <label>Group</label>
+          <select name="group">
+            <option value="select">Select</option>
+          </select>
+          <label>Semester</label>
+          <select name="semester">
+            <option value="select">Select</option>
+          </select>
+          <label>More Examples</label>
+          <select name="more examples">
+            <option value="select">Select</option>
+          </select>
+        </div>
 
+        <div class="filter-actions">
+          <button type="submit" class="btn-search">Search <i class="bi bi-search"></i></button>
+          <button type="button" class="btn-add">Add</button>
+        </div>
+      </form>
+    
+      <!-- ... -->
+    </div>
+  </div>
 
+  <script>
+// When the user clicks the button, open the modal 
+document.getElementById('openFilterModal').onclick = function() {
+  document.getElementById('filterModal').style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+document.getElementById('closeFilterModal').onclick = function() {
+  document.getElementById('filterModal').style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  var modal = document.getElementById('filterModal');
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
     <footer>
         <!-- Footer content here -->
 
         <?php include('../components/footer.html'); ?>
     </footer>
 
-</body>
+
 
 </html>
