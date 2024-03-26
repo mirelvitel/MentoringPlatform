@@ -23,17 +23,17 @@
 
       <li>
         <a class="emailSideBar" href="/MentoringPlatform/pages/compose-email.php">
-        <button>
+          <button>
             <i class="bi bi-pencil-square"></i> Compose
-        </button>
+          </button>
         </a>
       </li>
 
       <li>
         <a class="emailSideBar" href="/MentoringPlatform/pages/inbox-email.php">
-        <button>
+          <button>
             <i class="bi bi-inbox"></i> Inbox
-        </button>
+          </button>
         </a>
       </li>
 
@@ -45,17 +45,17 @@
 
       <li>
         <a class="emailSideBar"href='/MentoringPlatform/pages/sent-email.php'>
-        <button>
+            <button >
             <i class="bi bi-send"></i> Sent
-        </button>
+            </button>
         </a>
-      </li>
+     </li>
 
-      <li>
+     <li>
         <a class="emailSideBar"href='/MentoringPlatform/pages/trash-email.php'>
-          <button>
+            <button >
             <i class="bi bi-trash"></i> Trash
-          </button>
+            </button>
         </a>
      </li>
 
@@ -67,14 +67,6 @@
     <section>
       <article>
         <!-- List of emails -->
-        <div class="email-entry"> 
-          <i class="bi bi-person-circle icon"></i>
-          <div class="email-info">
-            <p>Cathrin Luther</p>
-            <span>Checking up on your milestones</span>
-          </div>
-          <span class="date-time">Nov 20, 15:00</span>
-        </div>
 
         <div class="email-entry">
           <i class="bi bi-person-circle icon"></i>

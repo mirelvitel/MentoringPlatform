@@ -23,16 +23,18 @@
         <ul class="sidebar">
 
             <li>
-                <button onclick="href='#'">
-                    <i class="bi bi-pencil-square"></i> Compose
-                </button>
+                <a class="emailSideBar"href="/MentoringPlatform/pages/compose-email.php">
+                    <button>
+                        <i class="bi bi-pencil-square"></i> Compose
+                    </button>
+                </a>
             </li>
 
             <li>
                 <a class="emailSideBar" href="/MentoringPlatform/pages/inbox-email.php">
-                    <button href='#'>
+                    <button>
                         <i class="bi bi-inbox"></i> Inbox
-                    </button>
+                    </button>   
                 </a>
             </li>
 
@@ -43,15 +45,19 @@
             </li>
 
             <li>
-                <button onclick="href='#'">
-                    <i class="bi bi-send"></i> Sent
-                </button>
+                <a class="emailSideBar"href='/MentoringPlatform/pages/sent-email.php'>
+                    <button>
+                        <i class="bi bi-send"></i> Sent
+                    </button>
+                </a>
             </li>
 
             <li>
-                <button onclick="href='#'">
-                    <i class="bi bi-trash"></i> Trash
-                </button>
+                <a class="emailSideBar"href='/MentoringPlatform/pages/trash-email.php'>
+                    <button>
+                        <i class="bi bi-trash"></i> Trash
+                    </button>
+                </a>
             </li>
 
         </ul>
