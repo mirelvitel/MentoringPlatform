@@ -9,6 +9,6 @@ class CalendarController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home/components/Calendar');
+        return Inertia::render('Home/views/Calendar');
     }
 }

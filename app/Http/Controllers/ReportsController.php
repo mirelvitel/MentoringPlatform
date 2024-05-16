@@ -9,6 +9,6 @@ class ReportsController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home/components/Reports');
+        return Inertia::render('Home/views/Reports');
     }
 }

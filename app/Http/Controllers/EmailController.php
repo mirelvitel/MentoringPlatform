@@ -9,6 +9,6 @@ class EmailController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Home/components/Email');
+        return Inertia::render('Home/views/Email');
     }
 }
