@@ -21,6 +21,7 @@ const submitForm = () => {
             //console.log(response.data);
             toast.success('User added successfully');
             emit('userAdded', response.data);
+            form.reset();
         })
         .catch(error => {
             console.log(error.response.data);

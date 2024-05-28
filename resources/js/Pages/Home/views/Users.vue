@@ -7,6 +7,7 @@ import Users from "@/Pages/Home/views/components/users/Users.vue";
 import UsersForm from "@/Pages/Home/views/components/users/UserForm.vue";
 import UploadExcel from "@/Pages/Home/views/components/users/UploadExcel.vue";
 import PendingRequests from "@/Pages/Home/views/components/users/PendingRequests.vue";
+import NavLeft from "@/Shared/NavLeft.vue";
 
 const component = ref('users');
 
@@ -17,9 +18,32 @@ const props = defineProps({
     }
 });
 
+
 function addNewUser(user) {
     props.users.push(user);
-    //props.users.unshift(user);
+}
+
+function addUsers(users) {
+    for (let user of users) {
+        props.users.push(user);
+    }
+}
+
+function deleteUser(userId) {
+    for (let i = 0; i < props.users.length; i++) {
+        if (props.users[i].id === userId) {
+            props.users.splice(i, 1);
+            break;
+        }
+    }
+}
+
+function updateStatus(userId) {console.log(props.users, props.users.length)
+    for (let i = 0; i < props.users.length; i++) {
+        if (props.users[i].id === userId) {
+            props.users[i].status = 'active';
+        }
+    }
 }
 
 </script>
@@ -29,39 +53,24 @@ function addNewUser(user) {
     <AppLayout>
 
         <div class="flex">
-            <div class="nav-left w-[200px] text-gray-500 pl-4">
-                <h1 class="text-xl text-gray-500 mb-2">MAIN</h1>
-                <div class="flex items-center text-primary mb-8">
-                    <HomeIcon class="h-6 w-6 mr-3"/>
-                    <a :href="route('home')" class="">Home</a>
-                </div>
-
-                <h1 class="text-xl text-gray-500 mb-2">TOOLS</h1>
-                <div class="flex items-center text-primary mb-2">
-                    <AtSymbolIcon class="h-6 w-6 mr-3"/>
-                    <a :href="route('email')" class="">Email</a>
-                </div>
-                <div class="flex items-center text-primary mb-2">
-                    <CalendarDaysIcon class="h-6 w-6 mr-3"/>
-                    <a :href="route('calendar')" class="">Calendar</a>
-                </div>
-                <div class="flex items-center text-primary mb-2">
-                    <ChartBarIcon class="h-6 w-6 mr-3"/>
-                    <a :href="route('reports')" class="">Reports</a>
-                </div>
-                <div class="flex items-center text-primary mb-2">
-                    <UserGroupIcon class="h-6 w-6 mr-3"/>
-                    <a :href="route('users')" class="">Users</a>
-                </div>
-            </div>
+            <NavLeft />
 
 
             <div class="posts mx-6 content-width--400 px-2">
                 <h1 class="text-xl text-gray-500 mb-2">USERS</h1>
                 <Users :users="users" v-if="component === 'users'"/>
-                <UsersForm v-if="component === 'user-form'" @user-added="addNewUser"/>
-                <UploadExcel v-if="component === 'upload-excel'"/>
-                <PendingRequests v-if="component === 'pending-requests'"/>
+
+                <UsersForm v-if="component === 'user-form'"
+                           @user-added="addNewUser"/>
+
+                <UploadExcel v-if="component === 'upload-excel'"
+                             @add-users="addUsers"
+                             @delete-user="deleteUser"/>
+
+                <PendingRequests :users="users"
+                                 v-if="component === 'pending-requests'"
+                                 @delete-user="deleteUser"
+                                 @update-status="updateStatus"/>
             </div>
 
             <div class="summary w-[200px]">

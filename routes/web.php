@@ -24,6 +24,7 @@ Route::middleware([
     //Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [\App\Http\Controllers\PostController::class, 'index'])->name('home');
     Route::post('/home/post', [\App\Http\Controllers\PostController::class, 'store']);
+    Route::delete('/home/post/{id}', [\App\Http\Controllers\PostController::class, 'destroy']);
 
     Route::get('/email', [\App\Http\Controllers\EmailController::class, 'index'])->name('email');
     Route::get('/calendar', [\App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');
@@ -32,6 +33,10 @@ Route::middleware([
     // USERS
     Route::get('/users', [\App\Http\Controllers\UsersController::class, 'index'])->name('users');
     Route::post('/users', [\App\Http\Controllers\UsersController::class, 'store']);
+    Route::post('/users/upload-excel', [\App\Http\Controllers\UsersController::class, 'uploadExcel']);
+    Route::put('/users/{userId}', [\App\Http\Controllers\UsersController::class, 'updateStatus']);
+    Route::delete('/users/{userId}', [\App\Http\Controllers\UsersController::class, 'deleteUser']);
+
 
     Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about');
 

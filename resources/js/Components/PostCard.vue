@@ -1,3 +1,23 @@
+<script setup>
+import moment from "moment";
+
+const props = defineProps({
+    post: {
+        type: Object,
+        required: true,
+    },
+    user: {
+        type: Object,
+        required: true,
+    },
+});
+
+const emit = defineEmits(["deletePost"]);
+
+</script>
+
+<style scoped></style>
+
 <template>
     <div
         class="bg-white shadow-sm border border-gray-300 p-4 rounded-lg mb-4 w-full"
@@ -13,27 +33,15 @@
         </div>
         <div class="text-gray-800">
             <p v-html="post.content"></p>
+
+            <div
+                v-if="post.user.id === user.id || user.role === 'admin'"
+                class="flex w-full justify-end mt-4">
+                <div @click="emit('deletePost', post.id)" class="bg-red-500 w-fit text-white hover_bg-red-600 transition-all rounded px-2 py-1 cursor-pointer">
+                    Delete
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
-
-<script>
-import moment from "moment";
-
-export default {
-    name: "PostCard",
-    computed: {
-        moment() {
-            return moment
-        }
-    },
-    props: {
-        post: {
-            type: Object,
-            required: true,
-        },
-    },
-};
-</script>
-
-<style scoped></style>

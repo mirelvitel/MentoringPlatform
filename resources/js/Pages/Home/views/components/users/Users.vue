@@ -1,5 +1,6 @@
 <script setup>
 import { MagnifyingGlassIcon } from "@heroicons/vue/20/solid/index.js";
+import moment from "moment";
 
 const props = defineProps({
     users: {
@@ -8,14 +9,6 @@ const props = defineProps({
     },
 });
 
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-GB", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-    });
-}
 </script>
 
 <template>
@@ -63,13 +56,14 @@ function formatDate(dateString) {
                         <tr
                             v-for="user in users"
                             :key="user.id"
+                            :class="user.status === 'pending' ? 'bg-red-100 cursor-not-allowed ' : ''"
                             class="border-b hover:bg-gray-50"
                         >
                             <td class="p-4">{{ user.name }}</td>
                             <td class="p-4">{{ user.email }}</td>
                             <td class="p-4">{{ user.role }}</td>
                             <td class="p-4">
-                                {{ formatDate(user.created_at) }}
+                                {{ moment(user.created_at).format('DD.MM.YYYY') }}
                             </td>
                             <td class="p-4">
                                 <button class="text-primary font-semibold">

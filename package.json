@@ -36,6 +36,12 @@
         "@tiptap/starter-kit": "^2.4.0",
         "@tiptap/vue-3": "^2.4.0",
         "moment": "^2.30.1",
-        "vue-toastification": "^2.0.0-rc.5"
+        "v-calendar": "^3.1.2",
+        "vue-toastification": "^2.0.0-rc.5",
+        "@fullcalendar/core": "^6.1.11",
+        "@fullcalendar/daygrid": "^6.1.11",
+        "@fullcalendar/interaction": "^6.1.11",
+        "@fullcalendar/timegrid": "^6.1.11",
+        "@fullcalendar/vue3": "^6.1.11"
     }
 }

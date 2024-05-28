@@ -2,14 +2,6 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PostCard from "@/Components/PostCard.vue";
 import { computed, ref } from "vue";
-import {
-    HomeIcon,
-    AtSymbolIcon,
-    CalendarDaysIcon,
-    ChartBarIcon,
-    UserGroupIcon,
-    NewspaperIcon,
-} from "@heroicons/vue/20/solid/index.js";
 import { PlusCircleIcon } from "@heroicons/vue/20/solid";
 
 import Highlight from '@tiptap/extension-highlight';
@@ -35,6 +27,7 @@ import { usePage } from "@inertiajs/vue3";
 
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+import NavLeft from "@/Shared/NavLeft.vue";
 
 const page = usePage();
 const props = defineProps({
@@ -135,36 +128,34 @@ function getColor(color) {
 function setFontSize(c) {
     editor.value.commands.setCustomClass({class: c});
 }
+
+function deletePost(id) {
+    if (!confirm("Are you sure you want to delete this post?")) {
+        return;
+    }
+
+    axios
+        .delete(`/home/post/${id}`)
+        .then(() => {
+            for (let i = 0; i < props.items.length; i++) {
+                if (props.items[i].id === id) {
+                    props.items.splice(i, 1);
+                    break;
+                }
+            }
+            toast.success("Post deleted successfully");
+        })
+        .catch(() => {
+            toast.error("An error occurred while deleting the post");
+        });
+}
+
 </script>
 
 <template>
     <AppLayout title="Dashboard">
         <div class="flex">
-            <div class="nav-left w-[200px] text-gray-500 pl-4">
-                <h1 class="text-xl text-gray-500 mb-2">MAIN</h1>
-                <div class="flex items-center text-primary mb-8">
-                    <HomeIcon class="h-6 w-6 mr-3" />
-                    <a :href="route('home')" class="">Home</a>
-                </div>
-
-                <h1 class="text-xl text-gray-500 mb-2">TOOLS</h1>
-                <div class="flex items-center text-primary mb-2">
-                    <AtSymbolIcon class="h-6 w-6 mr-3" />
-                    <a :href="route('email')" class="">Email</a>
-                </div>
-                <div class="flex items-center text-primary mb-2">
-                    <CalendarDaysIcon class="h-6 w-6 mr-3" />
-                    <a :href="route('calendar')" class="">Calendar</a>
-                </div>
-                <div class="flex items-center text-primary mb-2">
-                    <ChartBarIcon class="h-6 w-6 mr-3" />
-                    <a :href="route('reports')" class="">Reports</a>
-                </div>
-                <div class="flex items-center text-primary mb-2">
-                    <UserGroupIcon class="h-6 w-6 mr-3" />
-                    <a :href="route('users')" class="">Users</a>
-                </div>
-            </div>
+            <NavLeft />
 
             <div class="flex flex-col mx-6 content-width--400 px-2 w-full">
                 <div class="flex justify-between items-center mb-4">
@@ -177,7 +168,9 @@ function setFontSize(c) {
 
                 <PostCard
                     v-for="item in items"
+                    @delete-post="deletePost"
                     :post="item"
+                    :user="user"
                 ></PostCard>
 
                 <div

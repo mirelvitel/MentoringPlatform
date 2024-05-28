@@ -31,4 +31,11 @@ class PostController extends Controller
 
         return response()->json(Post::whereId($post->id)->with('user:id,name')->first(), 201);
     }
+
+
+    public function destroy(Request $request, $id)
+    {
+        Post::whereId($id)->delete();
+        return response()->json(null, 204);
+    }
 }
