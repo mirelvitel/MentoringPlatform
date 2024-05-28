@@ -6,20 +6,27 @@
             <div class="h-10 w-10 rounded-full bg-gray-300 mr-4"></div>
             <div>
                 <div class="font-semibold text-green-600">
-                    {{ post.user }}
+                    {{ post.user.name }}
                 </div>
-                <div class="text-sm text-gray-400">{{ post.created_at }}</div>
+                <div class="text-sm text-gray-400">{{ moment(post.created_at).format('MMMM Do YYYY, H:mm')}}</div>
             </div>
         </div>
         <div class="text-gray-800">
-            <p>{{ post.content }}</p>
+            <p v-html="post.content"></p>
         </div>
     </div>
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
     name: "PostCard",
+    computed: {
+        moment() {
+            return moment
+        }
+    },
     props: {
         post: {
             type: Object,

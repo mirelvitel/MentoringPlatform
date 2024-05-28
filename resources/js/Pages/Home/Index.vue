@@ -12,11 +12,29 @@ import {
 } from "@heroicons/vue/20/solid/index.js";
 import { PlusCircleIcon } from "@heroicons/vue/20/solid";
 
+import Highlight from '@tiptap/extension-highlight';
+//import Image from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
+import Bold from '@tiptap/extension-bold'
+import Document from '@tiptap/extension-document'
+import Paragraph from '@tiptap/extension-paragraph'
+import Color from '@tiptap/extension-color'
+import Underline from '@tiptap/extension-underline'
+import {TextStyle} from "@tiptap/extension-text-style";
+import HardBreak from "@tiptap/extension-hard-break";
+import CustomClassMark from "@/Plugins/TipTapCustomClassExtension.js";
+
 import axios from "axios";
 import { useToast } from "vue-toastification";
 
+import {useColors} from "@/Config/colors.js";
+const colors = useColors();
+
 const toast = useToast();
 import { usePage } from "@inertiajs/vue3";
+
+import { useEditor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
 
 const page = usePage();
 const props = defineProps({
@@ -27,18 +45,20 @@ const props = defineProps({
 });
 
 const displayForm = ref(false);
-const form = ref({
-    content: "",
-});
+const title = ref("");
 
 function savePost() {
     axios
-        .post("/home/post", form.value)
+        .post("/home/post", {
+            title: title.value,
+            content: editor.value.getHTML(),
+        })
         .then((response) => {
-            toast.success("Post saved successfully");
-            props.items.push(response.data);
+            props.items.unshift(response.data);
             displayForm.value = false;
-            form.value = { content: "" };
+            toast.success("Post saved successfully");
+            title.value = "";
+            editor.value.commands.setContent('<p>Content here. 🎉</p>');
         })
         .catch((error) => {
             toast.error("An error occurred while saving the post");
@@ -46,6 +66,75 @@ function savePost() {
 }
 
 const user = computed(() => page.props.auth.user);
+
+const editor = useEditor({
+    content: '<p>Content here. 🎉</p>',
+    extensions: [
+        StarterKit,
+        Highlight,
+        Document,
+        Bold,
+        Text,
+        Paragraph,
+        Underline,
+        TextStyle,
+        CustomClassMark,
+        /*Image.configure({
+            //inline: true,
+            HTMLAttributes: {
+                class: 'rounded border-2 border-primary-300 p-2 mobile:w-full mx-auto my-4 max-h-[600px] w-auto max-w-2/3',
+            },
+            allowBase64: true,
+            maxWidth: '100%',
+            maxHeight: '600px',
+        }),*/
+        HardBreak.extend({
+            addKeyboardShortcuts() {
+                return {
+                    Enter: () => this.editor.commands.setHardBreak()
+                }
+            }
+        }),
+        Link,
+        Color.configure({
+            types: ['textStyle'],
+        })
+    ],
+    onCreate() {
+        //document.querySelector('.ProseMirror').style.color = getColor('color1Dark')
+    },
+})
+
+const baseBtnClasses = 'rounded-xl border px-2 m-0.5 text-primary-100';
+function getButtonClasses(isActive, isDisabled = false) {
+    if (isDisabled) {
+        return `${baseBtnClasses} bg-primary-300 text-primary-700 cursor-not-allowed`;
+    } else if (isActive) {
+        return `${baseBtnClasses} bg-primary-700 hover:bg-primary-500`;
+    } else {
+        return `${baseBtnClasses} bg-primary-900 hover:bg-primary-700`;
+    }
+}
+
+function getColor(color) {
+    return {
+        'color1': colors.primary["500"],
+        'color1Dark': colors.primary["900"],
+        'color2': colors.secondary["500"],
+        'color2Dark': colors.secondary["900"],
+        'color3': colors.third["500"],
+        'color3Dark': colors.third["900"],
+        'color4': colors.forth["500"],
+        'color4Dark': colors.forth["900"],
+        'color5': colors.fifth["500"],
+        'color5Dark': colors.fifth["900"],
+        'pink': colors.pink["500"],
+    }[color]
+}
+
+function setFontSize(c) {
+    editor.value.commands.setCustomClass({class: c});
+}
 </script>
 
 <template>
@@ -99,12 +188,52 @@ const user = computed(() => page.props.auth.user);
                         class="bg-white shadow border border-primary p-12 rounded-lg min-w-[500px]"
                     >
                         <div class="form-group flex flex-col mb-4 w-full">
-                            <label for="content">Content</label>
-                            <textarea
-                                v-model="form.content"
-                                id="content"
-                                class="form-control"
-                            ></textarea>
+<!--                            <label for="content">Content</label>-->
+                            <div class="flex flex-wrap">
+                                <!-- Other buttons -->
+                                <button @click="editor.chain().focus().toggleBold().run()"
+                                        :class="getButtonClasses(editor.isActive('bold'))">
+                                    Toggle Bold
+                                </button>
+                                <button @click="editor.chain().focus().toggleItalic().run()"
+                                        :class="getButtonClasses(editor.isActive('italic'))">
+                                    Toggle Italic
+                                </button>
+                                <button @click="editor.chain().focus().toggleStrike().run()"
+                                        :class="getButtonClasses(editor.isActive('strike'))">
+                                    Toggle Strike
+                                </button>
+                                <button @click="editor.chain().focus().toggleUnderline().run()"
+                                        :class="getButtonClasses(editor.isActive('underline'))">
+                                    Toggle Underline
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap">
+                                <button
+                                    v-for="color in ['color1', 'color1Dark', 'color2', 'color2Dark', 'color3', 'color3Dark', 'color4', 'color4Dark', 'color5', 'color5Dark', 'pink']"
+                                    :key="color"
+                                    @click="editor.chain().focus().setColor(getColor(color)).run()"
+                                    :class="{ 'is-active': editor.isActive('textStyle', { color: getColor(color) }) }"
+                                    :style="{ backgroundColor: getColor(color) }"
+                                    class="w-8 h-8 rounded-full m-1"
+                                    :aria-label="`Set text color to ${color}`"></button>
+                            </div>
+
+                            <div class="flex flex-wrap">
+                                <template v-for="c in ['text-sm', 'text-base', 'text-xl', 'text-2xl', 'text-3xl', 'text-4xl', 'text-5xl']">
+                                    <button @click="setFontSize(c)"
+                                            class="rounded-xl text-sm border m-1 bg-secondary-400 px-2">{{ c }}
+                                    </button>
+                                </template>
+                            </div>
+
+                            <div class="flex items-center my-4">
+                                <label for="title" class="text-gray-700 font-semibold mr-4">Title</label>
+                                <input type="text" id="title" v-model="title" class="border border-gray-300 rounded p-2 w-full" />
+                            </div>
+
+                            <editor-content :editor="editor" />
                         </div>
 
                         <button
@@ -129,3 +258,23 @@ const user = computed(() => page.props.auth.user);
         </div>
     </AppLayout>
 </template>
+<style lang="scss">
+.ProseMirror {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    min-height: 500px;
+}
+
+.tiptap {
+    > * + * {
+        margin-top: 0.75em;
+    }
+
+    img {
+        &.ProseMirror-selectednode {
+            outline: 3px solid #68CEF8;
+        }
+    }
+}
+</style>

@@ -14,4 +14,23 @@ class UsersController extends Controller
             'users' => User::all()
         ]);
     }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required'
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => bcrypt('password25236')
+        ]);
+
+        return response()->json($user, 201);
+    }
 }

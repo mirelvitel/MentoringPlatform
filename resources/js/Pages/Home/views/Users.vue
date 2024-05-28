@@ -17,6 +17,11 @@ const props = defineProps({
     }
 });
 
+function addNewUser(user) {
+    props.users.push(user);
+    //props.users.unshift(user);
+}
+
 </script>
 
 <template>
@@ -50,11 +55,11 @@ const props = defineProps({
                 </div>
             </div>
 
-        
+
             <div class="posts mx-6 content-width--400 px-2">
                 <h1 class="text-xl text-gray-500 mb-2">USERS</h1>
                 <Users :users="users" v-if="component === 'users'"/>
-                <UsersForm v-if="component === 'user-form'"/>
+                <UsersForm v-if="component === 'user-form'" @user-added="addNewUser"/>
                 <UploadExcel v-if="component === 'upload-excel'"/>
                 <PendingRequests v-if="component === 'pending-requests'"/>
             </div>

@@ -3,9 +3,9 @@ import { useForm } from "@inertiajs/vue3";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
+import {useToast} from "vue-toastification";
+const toast = useToast();
 
-/*
 const form = useForm({
     name: "",
     email: "",
@@ -13,12 +13,21 @@ const form = useForm({
     terms: false,
 });
 
+const emit = defineEmits(['userAdded']);
+
 const submitForm = () => {
-    form.post('/newUser', {
-        onFinish: () => form.reset()
-    });
+    axios.post('/users', form.data())
+        .then(response => {
+            //console.log(response.data);
+            toast.success('User added successfully');
+            emit('userAdded', response.data);
+        })
+        .catch(error => {
+            console.log(error.response.data);
+            toast.error('Error adding user');
+        })
 };
-*/
+
 </script>
 
 <template>
