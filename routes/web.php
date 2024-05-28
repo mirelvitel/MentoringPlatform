@@ -18,8 +18,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    // HOME
     Route::redirect('/', '/home', 301);
     Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/home/post', [\App\Http\Controllers\PostController::class, 'storePost']);
 
     Route::get('/email', [\App\Http\Controllers\EmailController::class, 'index'])->name('email');
     Route::get('/calendar', [\App\Http\Controllers\CalendarController::class, 'index'])->name('calendar');

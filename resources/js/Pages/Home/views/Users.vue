@@ -24,32 +24,35 @@ const props = defineProps({
     <AppLayout>
 
         <div class="flex">
-            <div class="nav-left w-[200px] text-gray-500">
-                <div class="flex items-center text-primary mb-12">
-                    <HomeIcon class="h-6 w-6 mr-4"/>
-                    <a :href="route('home')" class="">HOME</a>
+            <div class="nav-left w-[200px] text-gray-500 pl-4">
+                <h1 class="text-xl text-gray-500 mb-2">MAIN</h1>
+                <div class="flex items-center text-primary mb-8">
+                    <HomeIcon class="h-6 w-6 mr-3"/>
+                    <a :href="route('home')" class="">Home</a>
                 </div>
 
-                <h2>Tools</h2>
+                <h1 class="text-xl text-gray-500 mb-2">TOOLS</h1>
                 <div class="flex items-center text-primary mb-2">
-                    <AtSymbolIcon class="h-6 w-6 mr-4"/>
+                    <AtSymbolIcon class="h-6 w-6 mr-3"/>
                     <a :href="route('email')" class="">Email</a>
                 </div>
                 <div class="flex items-center text-primary mb-2">
-                    <CalendarDaysIcon class="h-6 w-6 mr-4"/>
+                    <CalendarDaysIcon class="h-6 w-6 mr-3"/>
                     <a :href="route('calendar')" class="">Calendar</a>
                 </div>
                 <div class="flex items-center text-primary mb-2">
-                    <ChartBarIcon class="h-6 w-6 mr-4"/>
+                    <ChartBarIcon class="h-6 w-6 mr-3"/>
                     <a :href="route('reports')" class="">Reports</a>
                 </div>
                 <div class="flex items-center text-primary mb-2">
-                    <UserGroupIcon class="h-6 w-6 mr-4"/>
+                    <UserGroupIcon class="h-6 w-6 mr-3"/>
                     <a :href="route('users')" class="">Users</a>
                 </div>
             </div>
 
-            <div class="posts mx-6 content-width--400 bg-gray-200 px-2">
+        
+            <div class="posts mx-6 content-width--400 px-2">
+                <h1 class="text-xl text-gray-500 mb-2">USERS</h1>
                 <Users :users="users" v-if="component === 'users'"/>
                 <UsersForm v-if="component === 'user-form'"/>
                 <UploadExcel v-if="component === 'upload-excel'"/>
@@ -57,7 +60,7 @@ const props = defineProps({
             </div>
 
             <div class="summary w-[200px]">
-                <h1 class="text-gray-500 mb-8">USER MANAGEMENT</h1>
+                <h1 class="text-xl text-gray-500 mb-2">USER MANAGEMENT</h1>
 
                 <div
                     @click="component='users'"
