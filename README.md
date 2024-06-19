@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ```
 composer install
 npm install
