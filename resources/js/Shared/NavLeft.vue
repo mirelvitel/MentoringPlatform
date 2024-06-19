@@ -1,5 +1,5 @@
 <script setup>
-import {AtSymbolIcon, CalendarDaysIcon, ChartBarIcon, HomeIcon, UserGroupIcon} from "@heroicons/vue/20/solid/index.js";
+import {AtSymbolIcon, FlagIcon, UsersIcon, BookOpenIcon, CalendarDaysIcon, ChartBarIcon, HomeIcon, UserGroupIcon} from "@heroicons/vue/20/solid/index.js";
 import {computed} from "vue";
 import {usePage} from "@inertiajs/vue3";
 const page = usePage();
@@ -24,13 +24,25 @@ const user = computed(() => page.props.auth.user);
             <CalendarDaysIcon class="h-6 w-6 mr-3" />
             <a :href="route('calendar')" class="">Calendar</a>
         </div>
-        <div class="flex items-center text-primary mb-2">
+        <div v-if="user.role === 'admin'" class="flex items-center text-primary mb-2">
             <ChartBarIcon class="h-6 w-6 mr-3" />
             <a :href="route('reports')" class="">Reports</a>
         </div>
         <div v-if="user.role === 'admin'" class="flex items-center text-primary mb-2">
             <UserGroupIcon class="h-6 w-6 mr-3" />
             <a :href="route('users')" class="">Users</a>
+        </div>
+        <div v-if="user.role !== 'admin'" class="flex items-center text-primary mb-2">
+            <BookOpenIcon class="h-6 w-6 mr-3" />
+            <a :href="route('resources')" class="">Resources</a>
+        </div>
+        <div v-if="user.role !== 'admin'" class="flex items-center text-primary mb-2">
+            <UsersIcon class="h-6 w-6 mr-3" />
+            <a :href="route('users')" class="">Mentorship</a>
+        </div>
+        <div v-if="user.role !== 'admin'" class="flex items-center text-primary mb-2">
+            <FlagIcon class="h-6 w-6 mr-3" />
+            <a :href="route('users')" class="">Milestone</a>
         </div>
     </div>
 </template>

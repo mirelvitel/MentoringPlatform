@@ -13,7 +13,7 @@ const props = defineProps({
 
 <template>
     <div>
-        <div class="flex max-w-2xl mx-auto mb-3">
+        <div class="flex mb-3">
             <form>
                 <div>
                     <input

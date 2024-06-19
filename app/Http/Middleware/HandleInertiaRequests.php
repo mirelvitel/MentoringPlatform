@@ -49,13 +49,13 @@ class HandleInertiaRequests extends Middleware
 
     public function handle(Request $request, \Closure $next)
     {
-        // If user is logged in and inactive, handle accordingly
+
         if ($request->user() && $request->user()->status !== 'active') {
-            // Optionally, you could log the user out
+
             if (auth()->check())
                 auth('web')->logout();
 
-            // Redirect to a specific route
+
             return Inertia::render('Auth/Login', [
                 'errors' => ['inactive' => 'Your account is inactive. Please contact support for further assistance.'],
             ]);

@@ -21,7 +21,6 @@ Route::middleware([
 
     // HOME
     Route::redirect('/', '/home', 301);
-    //Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [\App\Http\Controllers\PostController::class, 'index'])->name('home');
     Route::post('/home/post', [\App\Http\Controllers\PostController::class, 'store']);
     Route::delete('/home/post/{id}', [\App\Http\Controllers\PostController::class, 'destroy']);
@@ -37,13 +36,16 @@ Route::middleware([
     Route::put('/users/{userId}', [\App\Http\Controllers\UsersController::class, 'updateStatus']);
     Route::delete('/users/{userId}', [\App\Http\Controllers\UsersController::class, 'deleteUser']);
 
-
+    // ABOUT
     Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
     // HELP
     Route::get('/help', [\App\Http\Controllers\HelpController::class, 'index'])->name('help');
     Route::post('/help/faq', [\App\Http\Controllers\HelpController::class, 'store']);
     Route::delete('/help/faq/{id}', [\App\Http\Controllers\HelpController::class, 'destroy']);
+
+    // RESOURCES
+    Route::get('/resources', [\App\Http\Controllers\ResourcesController::class, 'index'])->name('resources');
 });
 
 Route::get('/auth-failed', [\App\Http\Controllers\AuthFailedController::class, 'index'])->name('auth-failed');
