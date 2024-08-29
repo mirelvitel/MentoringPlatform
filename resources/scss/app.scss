@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+@tailwind colors;
+
+[x-cloak] {
+    display: none;
+}
+
+.content-width--200 {
+    width: calc(100% - 200px);
+}
+.content-width--400 {
+    width: calc(100% - 400px);
+}
+
+.scrollable-posts-container {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+}

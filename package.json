@@ -1,0 +1,58 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@inertiajs/vue3": "^1.0.14",
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.10",
+        "@vitejs/plugin-vue": "^5.0.0",
+        "autoprefixer": "^10.4.16",
+        "axios": "^1.7.4",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.32",
+        "sass": "^1.77.1",
+        "tailwindcss": "^3.4.0",
+        "vite": "^5.4.0",
+        "vue": "^3.3.13"
+    },
+    "dependencies": {
+        "@fullcalendar/core": "^6.1.13",
+        "@fullcalendar/daygrid": "^6.1.11",
+        "@fullcalendar/interaction": "^6.1.11",
+        "@fullcalendar/timegrid": "^6.1.11",
+        "@fullcalendar/vue3": "^6.1.13",
+        "@heroicons/vue": "^2.1.3",
+        "@tiptap/extension-blockquote": "^2.2.4",
+        "@tiptap/extension-bold": "^2.2.3",
+        "@tiptap/extension-color": "^2.2.3",
+        "@tiptap/extension-document": "^2.2.3",
+        "@tiptap/extension-hard-break": "^2.2.4",
+        "@tiptap/extension-highlight": "^2.2.3",
+        "@tiptap/extension-image": "^2.2.3",
+        "@tiptap/extension-link": "^2.2.3",
+        "@tiptap/extension-paragraph": "^2.2.3",
+        "@tiptap/extension-text-style": "^2.2.3",
+        "@tiptap/extension-underline": "^2.2.3",
+        "@tiptap/pm": "^2.4.0",
+        "@tiptap/starter-kit": "^2.4.0",
+        "@tiptap/vue-3": "^2.4.0",
+        "moment": "^2.30.1",
+        "v-calendar": "^3.1.2",
+        "vue-multiselect": "^3.0.0",
+        "vue-toastification": "^2.0.0-rc.5"
+    },
+    "name": "mentoringplatform",
+    "version": "1.0.0",
+    "description": "``` composer install npm install",
+    "main": "postcss.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
