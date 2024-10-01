@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->char('group', 1)->nullable();
+            $table->unsignedTinyInteger('semester')->nullable();
+            $table->foreignId('faculty_id')->nullable()->constrained();
+            $table->enum('status', ['active', 'inactive', 'pending'])->default('pending');
+            $table->string('role');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

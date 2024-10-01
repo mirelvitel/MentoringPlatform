@@ -38,11 +38,11 @@ const user = computed(() => page.props.auth.user);
         </div>
         <div v-if="user.role !== 'admin'" class="flex items-center text-primary mb-2">
             <UsersIcon class="h-6 w-6 mr-3" />
-            <a :href="route('users')" class="">Mentorship</a>
+            <a class="">Mentorship</a>
         </div>
         <div v-if="user.role !== 'admin'" class="flex items-center text-primary mb-2">
             <FlagIcon class="h-6 w-6 mr-3" />
-            <a :href="route('users')" class="">Milestone</a>
+            <a class="">Milestone</a>
         </div>
     </div>
 </template>

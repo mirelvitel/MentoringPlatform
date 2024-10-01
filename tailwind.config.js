@@ -4,6 +4,7 @@ import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
@@ -12,6 +13,7 @@ export default {
         './resources/js/**/*.vue',
     ],
 
+
     theme: {
         extend: {
             fontFamily: {
@@ -19,7 +21,9 @@ export default {
             },
             colors: {
                 primary: '#2A649D',
+                primary_hover: '#245788',
                 secondary: '#90b30f',
+                secondary_hover: '#7D9B0D',
                 third: '#773e02',
                 fourth: '#BFA38A',
                 fifth: '#F2DCEC',

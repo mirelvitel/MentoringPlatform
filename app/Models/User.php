@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'shared_events', 'user_id', 'event_id');
+    }
 }

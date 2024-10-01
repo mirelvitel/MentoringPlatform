@@ -1,3 +1,4 @@
+
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import NavLeft from "@/Shared/NavLeft.vue";

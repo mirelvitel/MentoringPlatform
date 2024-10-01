@@ -13,8 +13,8 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'shared_events', 'event_id', 'user_id');
     }
 }

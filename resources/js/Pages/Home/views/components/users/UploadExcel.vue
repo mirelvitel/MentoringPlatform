@@ -1,6 +1,8 @@
 <script setup>
 import { useToast } from "vue-toastification";
 import { ref } from "vue";
+import axios from 'axios';
+
 const toast = useToast();
 
 const users = ref(null);
