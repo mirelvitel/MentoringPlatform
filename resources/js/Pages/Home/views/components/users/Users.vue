@@ -1,6 +1,8 @@
 <script setup>
+import { ref } from 'vue';
 import { MagnifyingGlassIcon } from "@heroicons/vue/20/solid/index.js";
 import moment from "moment";
+import EditForm from "./UserEditForm.vue";
 
 const props = defineProps({
     users: {
@@ -8,6 +10,29 @@ const props = defineProps({
         required: true,
     },
 });
+
+// State to track whether the edit form is shown or not
+const showEditForm = ref(false);
+
+// State to hold the user data to be edited
+const selectedUser = ref(null);
+
+// Function to open the edit form with the selected user data
+function openEditForm(user) {
+    selectedUser.value = user;
+    showEditForm.value = true;
+}
+
+// Function to close the edit form
+function closeEditForm() {
+    showEditForm.value = false;
+}
+
+// Function to handle the updated user data (this would be where you save changes)
+function updateUser(updatedUser) {
+    console.log('Updated user:', updatedUser);
+    // Here, you would typically send a request to the backend to update the user
+}
 
 </script>
 
@@ -66,7 +91,7 @@ const props = defineProps({
                                 {{ moment(user.created_at).format('DD.MM.YYYY') }}
                             </td>
                             <td class="p-4">
-                                <button class="text-primary font-semibold">
+                                <button @click="openEditForm(user)" class="text-primary font-semibold">
                                     Edit
                                 </button>
                             </td>
@@ -75,5 +100,11 @@ const props = defineProps({
                 </table>
             </div>
         </div>
+        <EditForm 
+            v-if="showEditForm" 
+            :userData="selectedUser" 
+            @update-user="updateUser" 
+            @close="closeEditForm" 
+        />
     </div>
 </template>
