@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->date('date');
-            $table->timestamp('start');
-            $table->timestamp('end');
+            $table->timestamp('start')->notNull();
+            $table->timestamp('end')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }
