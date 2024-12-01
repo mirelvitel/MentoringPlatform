@@ -9,13 +9,13 @@ const user = computed(() => page.props.auth.user);
 
 <template>
     <div class="nav-left w-[200px] text-gray-500 pl-4">
-        <h1 class="text-xl text-gray-500 mb-2">MAIN</h1>
+        <h1 class="text-l text-gray-500 mb-2">MAIN</h1>
         <div class="flex items-center text-primary mb-8">
             <HomeIcon class="h-6 w-6 mr-3" />
             <a :href="route('home')" class="">Home</a>
         </div>
 
-        <h1 class="text-xl text-gray-500 mb-2">TOOLS</h1>
+        <h1 class="text-l text-gray-500 mb-2">TOOLS</h1>
         <div class="flex items-center text-primary mb-2">
             <AtSymbolIcon class="h-6 w-6 mr-3" />
             <a :href="route('email')" class="">Email</a>
