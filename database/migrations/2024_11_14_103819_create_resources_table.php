@@ -23,6 +23,33 @@ class CreateResourcesTable extends Migration
             $table->string('cover_image')->nullable(); // Path to cover image
             $table->timestamps();
         });
+
+    // Insert data after creating the table
+    DB::table('resources')->insert([
+        [
+            'title' => 'Introduction to Laravel',
+            'author' => 'Taylor Otwell',
+            'description' => 'A comprehensive guide to Laravel framework.',
+            'category' => 'Reference',
+            'topic' => 'Web Development',
+            'cover_image' => 'assets/images/laravel.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ],
+        [
+            'title' => 'Clean Code',
+            'author' => 'Robert C. Martin',
+            'description' => 'A handbook of agile software craftsmanship.',
+            'category' => 'Non-fiction',
+            'topic' => 'Software Development',
+            'cover_image' => 'assets/images/clean_code.jpg',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ],
+    ]);
+
+
+
     }
 
     /**
