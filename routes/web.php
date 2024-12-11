@@ -13,6 +13,7 @@ Route::get('/', function () {
     ]);
 });
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -54,6 +55,12 @@ Route::middleware([
 
     // RESOURCES
     Route::get('/resources', [\App\Http\Controllers\ResourcesController::class, 'index'])->name('resources');
+    Route::post('/resources', [\App\Http\Controllers\ResourcesController::class, 'store']);
+
+    // Books
+    Route::post('/books', [\App\Http\Controllers\BookController::class, 'store']);
+    Route::get('/books', [\App\Http\Controllers\BookController::class, 'index']);
+
 });
 
 Route::get('/auth-failed', [\App\Http\Controllers\AuthFailedController::class, 'index'])->name('auth-failed');
