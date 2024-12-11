@@ -164,7 +164,6 @@ watch([searchTerm, selectedTopic], fetchResources);
                 </ol>
             </div>
         </div>
-        
     </AppLayout>
 </template>
 
