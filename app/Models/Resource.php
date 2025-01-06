@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resource extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'title',
         'author',
@@ -19,3 +17,4 @@ class Resource extends Model
         'cover_image',
     ];
 }
+

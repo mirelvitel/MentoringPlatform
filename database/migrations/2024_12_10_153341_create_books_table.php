@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
         Schema::create('books', function (Blueprint $table) {
             $table->id(); // Primary Key
             $table->string('file_name'); // Name of the book file
@@ -24,6 +23,7 @@ return new class extends Migration
             $table->string('publisher')->nullable(); // Publisher name
             $table->date('published_date')->nullable(); // Date when the book was published
             $table->integer('pages')->nullable(); // Number of pages in the book
+            $table->integer('read_count')->default(0); // New column for read count with default value 0
             $table->timestamps(); // Created at and Updated at timestamps
         });
     }

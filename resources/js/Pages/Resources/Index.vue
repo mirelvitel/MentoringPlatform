@@ -302,12 +302,12 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import {ref, watch, onMounted} from "vue";
 import axios from "axios";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import NavLeft from "@/Shared/NavLeft.vue";
 import Book from "@/Components/Book.vue";
-import { MagnifyingGlassIcon } from "@heroicons/vue/20/solid/index.js";
+import {MagnifyingGlassIcon} from "@heroicons/vue/20/solid/index.js";
 
 const file = ref(null);
 const showCreateModal = ref(false);
@@ -389,11 +389,16 @@ const fetchResources = async () => {
                 search: searchTerm.value || undefined,
             },
         });
-        resources.value = response.data;
+
+        // Sort descending by created_at (newest first)
+        resources.value = response.data.sort((a, b) => {
+            return new Date(b.created_at) - new Date(a.created_at);
+        });
     } catch (error) {
         console.error("Error fetching resources:", error);
     }
 };
+
 
 const fetchBooks = async () => {
     try {
@@ -430,6 +435,7 @@ watch([searchTerm, selectedTopic], () => {
 .content-width-400 {
     max-width: 1200px;
 }
+
 .mostread {
 }
 </style>
