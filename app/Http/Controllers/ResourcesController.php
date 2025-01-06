@@ -13,10 +13,12 @@ class ResourcesController extends Controller
     {
         $query = Resource::query();
 
+        // If a topic was provided, filter by topic
         if ($request->has('topic') && $request->topic !== '') {
             $query->where('topic', $request->topic);
         }
 
+        // If a search term was provided, filter by title/author/description
         if ($request->has('search') && $request->search !== '') {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -26,7 +28,7 @@ class ResourcesController extends Controller
             });
         }
 
-        // Order by updated_at descending to show the most recently updated resources first
+        // Order by updated_at descending
         $resources = $query->orderBy('updated_at', 'desc')->get();
 
         return Inertia::render('Resources/Index', [
@@ -64,7 +66,7 @@ class ResourcesController extends Controller
         $resource = Resource::create($validatedData);
 
         return response()->json([
-            'message' => 'Resource created successfully',
+            'message'  => 'Resource created successfully',
             'resource' => $resource
         ], 201);
     }

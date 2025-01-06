@@ -1,128 +1,3 @@
-<script setup>
-import { ref, watch, onMounted } from "vue";
-import axios from "axios";
-import AppLayout from "@/Layouts/AppLayout.vue";
-import NavLeft from "@/Shared/NavLeft.vue";
-import TopicDropdown from "@/Components/TopicDropdown.vue";
-import Book from "@/Components/Book.vue";
-import { MagnifyingGlassIcon } from "@heroicons/vue/20/solid/index.js";
-
-const file = ref(null);
-const showCreateModal = ref(false);
-
-// Resource form state
-const newResource = ref({
-    title: "",
-    author: "",
-    description: "",
-    category: "",
-    topic: "",
-    type: "", // 'book', 'document', or 'article'
-});
-
-// Predefined categories
-const categories = [
-    "Reference",
-    "Non-fiction",
-    "Technology",
-    "Business",
-    "Personal Development",
-];
-
-const handleFileUpload = (event) => {
-    file.value = event.target.files[0];
-};
-
-const createResource = async () => {
-    try {
-        const formData = new FormData();
-        formData.append("title", newResource.value.title);
-        formData.append("author", newResource.value.author);
-        formData.append("description", newResource.value.description);
-        formData.append("category", newResource.value.category);
-        formData.append("topic", newResource.value.topic);
-        formData.append("type", newResource.value.type);
-
-        // Only append a file if it's a book, otherwise rely on the server to set a default image
-        if (newResource.value.type === "book" && file.value) {
-            formData.append("cover_image", file.value);
-        }
-
-        await axios.post("/resources", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        });
-
-        fetchResources();
-
-        // Reset the form and modal
-        newResource.value = {
-            title: "",
-            author: "",
-            description: "",
-            category: "",
-            topic: "",
-            type: "",
-        };
-        file.value = null;
-        showCreateModal.value = false;
-    } catch (error) {
-        console.error("Error creating resource:", error);
-    }
-};
-
-// Data for search and filtering
-const searchTerm = ref("");
-const selectedTopic = ref("");
-const resources = ref([]);
-const mostReadResources = ref([]);
-const books = ref([]);
-
-const fetchResources = async () => {
-    try {
-        const response = await axios.get("/api/resources", {
-            params: {
-                topic: selectedTopic.value || undefined,
-                search: searchTerm.value || undefined,
-            },
-        });
-        resources.value = response.data;
-    } catch (error) {
-        console.error("Error fetching resources:", error);
-    }
-};
-
-const fetchBooks = async () => {
-    try {
-        const response = await axios.get("/books");
-        books.value = response.data.books;
-    } catch (error) {
-        console.error("Error fetching books:", error);
-    }
-};
-
-const fetchMostReadResources = async () => {
-    try {
-        const response = await axios.get("/api/resources/most-read");
-        mostReadResources.value = response.data;
-    } catch (error) {
-        console.error("Error fetching most read resources:", error);
-    }
-};
-
-onMounted(() => {
-    fetchResources();
-    fetchBooks();
-    fetchMostReadResources();
-});
-
-watch([searchTerm, selectedTopic], () => {
-    fetchResources();
-    fetchBooks();
-});
-</script>
-
 <template>
     <AppLayout title="Dashboard">
         <div class="flex min-h-screen bg-gray-100">
@@ -140,9 +15,22 @@ watch([searchTerm, selectedTopic], () => {
                 <div
                     class="flex flex-col md:flex-row items-center justify-between bg-white p-4 rounded-lg shadow-md mb-6 space-y-4 md:space-y-0"
                 >
-                    <!-- Topic Dropdown -->
-                    <div class="w-full md:w-1/4 relative">
-                        <TopicDropdown v-model="selectedTopic" class="w-full z-20" />
+                    <!-- Simple Topic Select -->
+                    <div class="w-full md:w-1/4">
+                        <select
+                            v-model="selectedTopic"
+                            class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        >
+                            <option value="">All Topics</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Health">Health</option>
+                            <option value="Business">Business</option>
+                            <option value="Education">Education</option>
+                            <option value="Science">Science</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Mathematics">Mathematics</option>
+                        </select>
                     </div>
 
                     <!-- Search Bar -->
@@ -225,7 +113,9 @@ watch([searchTerm, selectedTopic], () => {
                                     required
                                 >
                                     <option value="">Select a category</option>
-                                    <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+                                    <option v-for="cat in categories" :key="cat" :value="cat">
+                                        {{ cat }}
+                                    </option>
                                 </select>
                             </div>
                             <div class="mb-4">
@@ -335,7 +225,7 @@ watch([searchTerm, selectedTopic], () => {
                             </div>
                         </div>
 
-                        <!-- Books -->
+                        <!-- Books (fetched separately) -->
                         <div
                             v-for="book in books"
                             :key="`book-${book.id}`"
@@ -378,7 +268,7 @@ watch([searchTerm, selectedTopic], () => {
                 </div>
             </div>
 
-            <!-- Most Read Sidebar -->
+            <!-- Most Read Sidebar (unchanged) -->
             <div class="mostread w-[220px] divide-x-2 pl-6 relative z-10">
                 <h1 class="text-lg text-gray-500 pl-2 mb-4">MOST READ</h1>
                 <ol class="list-decimal pl-5 space-y-4">
@@ -400,7 +290,6 @@ watch([searchTerm, selectedTopic], () => {
                             <p class="text-sm text-gray-500">
                                 {{ resource.author }}
                             </p>
-                            <!-- Add small text indicating the type -->
                             <p class="text-xs text-gray-500 italic">
                                 {{ resource.type }}
                             </p>
@@ -412,14 +301,135 @@ watch([searchTerm, selectedTopic], () => {
     </AppLayout>
 </template>
 
+<script setup>
+import { ref, watch, onMounted } from "vue";
+import axios from "axios";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import NavLeft from "@/Shared/NavLeft.vue";
+import Book from "@/Components/Book.vue";
+import { MagnifyingGlassIcon } from "@heroicons/vue/20/solid/index.js";
+
+const file = ref(null);
+const showCreateModal = ref(false);
+
+// Resource form state
+const newResource = ref({
+    title: "",
+    author: "",
+    description: "",
+    category: "",
+    topic: "",
+    type: "",
+});
+
+// Predefined categories
+const categories = [
+    "Reference",
+    "Non-fiction",
+    "Technology",
+    "Business",
+    "Personal Development",
+];
+
+const handleFileUpload = (event) => {
+    file.value = event.target.files[0];
+};
+
+const createResource = async () => {
+    try {
+        const formData = new FormData();
+        formData.append("title", newResource.value.title);
+        formData.append("author", newResource.value.author);
+        formData.append("description", newResource.value.description);
+        formData.append("category", newResource.value.category);
+        formData.append("topic", newResource.value.topic);
+        formData.append("type", newResource.value.type);
+
+        // Only append a file if it's a book
+        if (newResource.value.type === "book" && file.value) {
+            formData.append("cover_image", file.value);
+        }
+
+        await axios.post("/resources", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+
+        fetchResources();
+
+        // Reset the form and modal
+        newResource.value = {
+            title: "",
+            author: "",
+            description: "",
+            category: "",
+            topic: "",
+            type: "",
+        };
+        file.value = null;
+        showCreateModal.value = false;
+    } catch (error) {
+        console.error("Error creating resource:", error);
+    }
+};
+
+// Data for search and filtering
+const searchTerm = ref("");
+const selectedTopic = ref("");
+const resources = ref([]);
+const mostReadResources = ref([]);
+const books = ref([]);
+
+const fetchResources = async () => {
+    try {
+        const response = await axios.get("/api/resources", {
+            params: {
+                topic: selectedTopic.value || undefined,
+                search: searchTerm.value || undefined,
+            },
+        });
+        resources.value = response.data;
+    } catch (error) {
+        console.error("Error fetching resources:", error);
+    }
+};
+
+const fetchBooks = async () => {
+    try {
+        const response = await axios.get("/books");
+        books.value = response.data.books;
+    } catch (error) {
+        console.error("Error fetching books:", error);
+    }
+};
+
+const fetchMostReadResources = async () => {
+    try {
+        const response = await axios.get("/api/resources/most-read");
+        mostReadResources.value = response.data;
+    } catch (error) {
+        console.error("Error fetching most read resources:", error);
+    }
+};
+
+onMounted(() => {
+    fetchResources();
+    fetchBooks();
+    fetchMostReadResources();
+});
+
+// Re-fetch whenever searchTerm or selectedTopic changes
+watch([searchTerm, selectedTopic], () => {
+    fetchResources();
+    fetchBooks();
+});
+</script>
+
 <style scoped>
 .content-width-400 {
     max-width: 1200px;
 }
 .mostread {
-}
-
-.TopicDropdown {
-    z-index: 50;
 }
 </style>
