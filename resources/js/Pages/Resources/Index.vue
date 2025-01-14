@@ -180,7 +180,8 @@
                         <div
                             v-for="resource in resources"
                             :key="`resource-${resource.id}`"
-                            class="bg-white rounded-xl shadow hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1"
+                            class="bg-white rounded-xl shadow hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 cursor-pointer"
+                            @click="handleResourceClick(resource)"
                         >
                             <div class="h-40 overflow-hidden rounded-t-xl">
                                 <img
@@ -196,35 +197,17 @@
                                 <h3 class="text-sm text-gray-600 mb-2">
                                     by {{ resource.author }}
                                 </h3>
+                                <!-- Add small text indicating the type -->
                                 <p class="text-xs text-gray-500 italic mb-2">
                                     {{ resource.type }}
                                 </p>
                                 <p class="text-gray-700 flex-1 text-sm">
                                     {{ resource.description }}
                                 </p>
-                                <button
-                                    class="mt-2 self-start text-blue-600 hover:text-blue-800 font-medium flex items-center text-sm"
-                                >
-                                    Learn More
-                                    <svg
-                                        class="w-4 h-4 ml-1 transition-transform duration-200 transform group-hover:translate-x-1"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M9 5l7 7-7 7"
-                                        ></path>
-                                    </svg>
-                                </button>
                             </div>
                         </div>
 
-                        <!-- Books (fetched separately) -->
+                        <!-- Books (fetched separately if you want) -->
                         <div
                             v-for="book in books"
                             :key="`book-${book.id}`"
@@ -296,6 +279,84 @@
                     </li>
                 </ol>
             </div>
+
+            <!-- Popup for Book Extra Details -->
+            <div
+                v-if="showBookPopup"
+                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 px-4"
+            >
+                <div class="bg-white rounded-lg p-6 shadow-md w-full max-w-2xl relative">
+                    <!-- Cover + Title Row -->
+                    <div class="flex items-start space-x-4 mb-4">
+                        <!-- Optionally show cover image in the popup -->
+                        <img
+                            v-if="selectedBookDetail?.cover_image"
+                            :src="selectedBookDetail.cover_image"
+                            alt="Book Cover"
+                            class="w-24 h-36 object-cover rounded shadow"
+                        />
+                        <div class="flex-1">
+                            <h2 class="text-xl font-bold text-gray-800">
+                                {{ selectedBookDetail?.title || 'Book Title' }}
+                            </h2>
+                            <!-- Example: Show rating & reviews -->
+                            <div class="mt-1 flex items-center space-x-2">
+                                <div class="text-yellow-500 flex items-center">
+                                    <!-- Very simple star icon -->
+                                    <svg
+                                        class="h-5 w-5"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path d="M9.049.927c.3-.921 1.603-.921 1.902 0l1.562 4.8a1 1 0 00.95.69h5.042c.969 0 1.371 1.24.588 1.81l-4.08 2.96a1 1 0 00-.363 1.118l1.562 4.8c.3.921-.755 1.688-1.54 1.118l-4.08-2.96a1 1 0 00-1.176 0l-4.08 2.96c-.785.57-1.84-.197-1.54-1.118l1.562-4.8a1 1 0 00-.363-1.118L.95 7.427c-.783-.57-.38-1.81.588-1.81h5.042a1 1 0 00.95-.69l1.562-4.8z"/>
+                                    </svg>
+                                    <span class="ml-1 text-gray-700 font-semibold">
+                                        {{ selectedBookDetail?.rating || 'N/A' }}
+                                    </span>
+                                </div>
+                                <p class="text-sm text-gray-500">
+                                    ({{ selectedBookDetail?.reviews_count || 0 }} reviews)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Descriptions -->
+                    <div class="mb-4">
+                        <p class="text-base text-gray-600">
+                            {{ selectedBookDetail?.short_description }}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                            {{ selectedBookDetail?.long_description }}
+                        </p>
+                    </div>
+
+                    <!-- Close Button -->
+                    <button
+                        @click="showBookPopup = false"
+                        class="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+                        aria-label="Close Popup"
+                    >
+                        <svg
+                            class="h-6 w-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Popup End -->
         </div>
     </AppLayout>
 </template>
@@ -397,17 +458,15 @@ const fetchMostReadResources = async () => {
 
 const fetchResources = async () => {
     try {
-        // Example call, adjust if needed
+        // This endpoint should return resources in JSON
+        // Adjust if using an Inertia page or different route
         const response = await axios.get("/api/resources", {
             params: {
                 topic: selectedTopic.value || undefined,
                 search: searchTerm.value || undefined,
             },
         });
-        // Sort descending by created_at (newest first)
-        resources.value = response.data.sort((a, b) => {
-            return new Date(b.created_at) - new Date(a.created_at);
-        });
+        resources.value = response.data;
     } catch (error) {
         console.error("Error fetching resources:", error);
     }
@@ -423,7 +482,34 @@ const fetchBooks = async () => {
 };
 
 // ------------------------------------
-// Lifecycle & Watch
+// Popup for Book Details
+// ------------------------------------
+const showBookPopup = ref(false);
+const selectedBookDetail = ref(null);
+
+/**
+ * Triggered when user clicks a resource card.
+ * If it's a book, fetch its extra details from /api/book-details/{id}.
+ */
+const handleResourceClick = async (resource) => {
+    if (resource.type !== "book") return;
+
+    try {
+        const { data } = await axios.get(`/api/book-details/${resource.id}`);
+        // Merge resource's title/cover in case the detail table doesn't store them
+        selectedBookDetail.value = {
+            title: resource.title,
+            cover_image: resource.cover_image,
+            ...data,
+        };
+        showBookPopup.value = true;
+    } catch (error) {
+        console.error("Error fetching book details:", error);
+    }
+};
+
+// ------------------------------------
+// Lifecycle & watch
 // ------------------------------------
 onMounted(() => {
     fetchResources();
@@ -431,9 +517,9 @@ onMounted(() => {
     fetchMostReadResources();
 });
 
+// Re-fetch resources whenever searchTerm or selectedTopic changes
 watch([searchTerm, selectedTopic], () => {
     fetchResources();
-    fetchBooks();
 });
 </script>
 
