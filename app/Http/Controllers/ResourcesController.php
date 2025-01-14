@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Resource;
-use Illuminate\Support\Facades\Storage;
 
 class ResourcesController extends Controller
 {
+    /**
+     * Display a listing of resources.
+     */
     public function index(Request $request)
     {
         $query = Resource::query();
@@ -34,6 +36,9 @@ class ResourcesController extends Controller
         ]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -46,7 +51,7 @@ class ResourcesController extends Controller
             'cover_image' => 'nullable|image|max:2048',
         ]);
 
-        // Set default cover image based on type
+        // Set default cover image based on type if needed
         if ($validatedData['type'] === 'article') {
             $validatedData['cover_image'] = 'https://www.thesaurus.com/e/wp-content/uploads/2021/11/20211104_articles_1000x562-790x310.png';
         } elseif ($validatedData['type'] === 'document') {
@@ -61,11 +66,25 @@ class ResourcesController extends Controller
             }
         }
 
+        // Create the resource
         $resource = Resource::create($validatedData);
 
         return response()->json([
             'message' => 'Resource created successfully',
             'resource' => $resource
         ], 201);
+    }
+
+    /**
+     * Return the top three most-read books.
+     */
+    public function mostReadBooks()
+    {
+        $mostReadBooks = Resource::where('type', 'book')
+            ->orderBy('read_count', 'desc')
+            ->take(3)
+            ->get();
+
+        return response()->json($mostReadBooks, 200);
     }
 }

@@ -196,7 +196,6 @@
                                 <h3 class="text-sm text-gray-600 mb-2">
                                     by {{ resource.author }}
                                 </h3>
-                                <!-- Add small text indicating the type -->
                                 <p class="text-xs text-gray-500 italic mb-2">
                                     {{ resource.type }}
                                 </p>
@@ -245,7 +244,6 @@
                                 <h3 class="text-sm text-gray-600 mb-2">
                                     {{ book.type }}
                                 </h3>
-                                <!-- Add small text indicating the type -->
                                 <p class="text-xs text-gray-500 italic mb-2">
                                     {{ book.type }}
                                 </p>
@@ -268,30 +266,31 @@
                 </div>
             </div>
 
-            <!-- Most Read Sidebar (unchanged) -->
-            <div class="mostread w-[220px] divide-x-2 pl-6 relative z-10">
-                <h1 class="text-lg text-gray-500 pl-2 mb-4">MOST READ</h1>
+            <!-- Most Read Sidebar -->
+            <div class="mostread w-[220px] pl-6 relative z-10">
+                <h1 class="text-lg text-gray-500 pl-2 mb-4 border-b pb-2">MOST READ</h1>
                 <ol class="list-decimal pl-5 space-y-4">
                     <li
                         v-for="resource in mostReadResources"
                         :key="resource.id"
-                        class="flex items-start space-x-4 hover:bg-gray-100 p-3 rounded-md transition-colors duration-200"
+                        class="flex items-start space-x-3 hover:bg-gray-100 p-3 rounded-md transition-colors duration-200"
                     >
-                        <Book
-                            :title="resource.title"
-                            :author="resource.author"
-                            :cover="resource.cover_image"
-                            class="w-16 h-16 object-cover rounded-md"
+                        <!-- Book cover (or fallback) -->
+                        <img
+                            :src="resource.cover_image ? resource.cover_image : '/assets/images/pdf.jpg'"
+                            alt="Book Cover"
+                            class="w-16 h-16 object-cover rounded shadow"
                         />
-                        <div>
-                            <h3 class="text-md font-medium text-gray-800">
+                        <!-- Book info -->
+                        <div class="flex-1">
+                            <h3 class="text-md font-medium text-gray-800 leading-tight mb-1">
                                 {{ resource.title }}
                             </h3>
-                            <p class="text-sm text-gray-500">
-                                {{ resource.author }}
+                            <p class="text-sm text-gray-500 mb-1">
+                                by {{ resource.author }}
                             </p>
-                            <p class="text-xs text-gray-500 italic">
-                                {{ resource.type }}
+                            <p class="text-xs text-gray-400 italic">
+                                Reads: {{ resource.read_count }}
                             </p>
                         </div>
                     </li>
@@ -302,17 +301,19 @@
 </template>
 
 <script setup>
-import {ref, watch, onMounted} from "vue";
+import { ref, watch, onMounted } from "vue";
 import axios from "axios";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import NavLeft from "@/Shared/NavLeft.vue";
 import Book from "@/Components/Book.vue";
-import {MagnifyingGlassIcon} from "@heroicons/vue/20/solid/index.js";
+import { MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
 
+// ------------------------------------
+// Modal/File state for new Resource
+// ------------------------------------
 const file = ref(null);
 const showCreateModal = ref(false);
 
-// Resource form state
 const newResource = ref({
     title: "",
     author: "",
@@ -345,7 +346,6 @@ const createResource = async () => {
         formData.append("topic", newResource.value.topic);
         formData.append("type", newResource.value.type);
 
-        // Only append a file if it's a book
         if (newResource.value.type === "book" && file.value) {
             formData.append("cover_image", file.value);
         }
@@ -357,8 +357,7 @@ const createResource = async () => {
         });
 
         fetchResources();
-
-        // Reset the form and modal
+        // Reset form & modal
         newResource.value = {
             title: "",
             author: "",
@@ -374,22 +373,37 @@ const createResource = async () => {
     }
 };
 
-// Data for search and filtering
+// ------------------------------------
+// Data for search & filtering
+// ------------------------------------
 const searchTerm = ref("");
 const selectedTopic = ref("");
 const resources = ref([]);
-const mostReadResources = ref([]);
 const books = ref([]);
+
+// ------------------------------------
+// Most Read (top 3) resources
+// ------------------------------------
+const mostReadResources = ref([]);
+
+const fetchMostReadResources = async () => {
+    try {
+        const response = await axios.get("/api/resources/most-read");
+        mostReadResources.value = response.data; // top 3 books
+    } catch (error) {
+        console.error("Error fetching most read resources:", error);
+    }
+};
 
 const fetchResources = async () => {
     try {
+        // Example call, adjust if needed
         const response = await axios.get("/api/resources", {
             params: {
                 topic: selectedTopic.value || undefined,
                 search: searchTerm.value || undefined,
             },
         });
-
         // Sort descending by created_at (newest first)
         resources.value = response.data.sort((a, b) => {
             return new Date(b.created_at) - new Date(a.created_at);
@@ -398,7 +412,6 @@ const fetchResources = async () => {
         console.error("Error fetching resources:", error);
     }
 };
-
 
 const fetchBooks = async () => {
     try {
@@ -409,22 +422,15 @@ const fetchBooks = async () => {
     }
 };
 
-const fetchMostReadResources = async () => {
-    try {
-        const response = await axios.get("/api/resources/most-read");
-        mostReadResources.value = response.data;
-    } catch (error) {
-        console.error("Error fetching most read resources:", error);
-    }
-};
-
+// ------------------------------------
+// Lifecycle & Watch
+// ------------------------------------
 onMounted(() => {
     fetchResources();
     fetchBooks();
     fetchMostReadResources();
 });
 
-// Re-fetch whenever searchTerm or selectedTopic changes
 watch([searchTerm, selectedTopic], () => {
     fetchResources();
     fetchBooks();
@@ -437,5 +443,6 @@ watch([searchTerm, selectedTopic], () => {
 }
 
 .mostread {
+    /* Additional styling if desired */
 }
 </style>

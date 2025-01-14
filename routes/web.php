@@ -13,7 +13,6 @@ Route::get('/', function () {
     ]);
 });
 
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -62,5 +61,8 @@ Route::middleware([
     Route::get('/books', [\App\Http\Controllers\BookController::class, 'index']);
 
 });
+
+// Add a route for fetching the top-three most-read books
+Route::get('/api/resources/most-read', [\App\Http\Controllers\ResourcesController::class, 'mostReadBooks']);
 
 Route::get('/auth-failed', [\App\Http\Controllers\AuthFailedController::class, 'index'])->name('auth-failed');
