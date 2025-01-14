@@ -9,7 +9,8 @@ use App\Models\Resource;
 class ResourcesController extends Controller
 {
     /**
-     * Display a listing of resources.
+     * Return the Inertia page with all resources
+     * (or filtered by request) - if you still use it for the /resources route.
      */
     public function index(Request $request)
     {
@@ -18,7 +19,6 @@ class ResourcesController extends Controller
         if ($request->has('topic') && $request->topic !== '') {
             $query->where('topic', $request->topic);
         }
-
         if ($request->has('search') && $request->search !== '') {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -28,8 +28,8 @@ class ResourcesController extends Controller
             });
         }
 
-        // Order by updated_at descending to show the most recently updated resources first
-        $resources = $query->orderBy('updated_at', 'desc')->get();
+        // Sort by updated_at just for the Inertia page
+        $resources = $query->orderBy('created_at', 'desc')->get();
 
         return Inertia::render('Resources/Index', [
             'resources' => $resources,
@@ -37,7 +37,33 @@ class ResourcesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * API endpoint returning resources sorted by created_at DESC (JSON).
+     */
+    public function apiIndex(Request $request)
+    {
+        $query = Resource::query();
+
+        // optional filters if you want them
+        if ($request->has('topic') && $request->topic !== '') {
+            $query->where('topic', $request->topic);
+        }
+        if ($request->has('search') && $request->search !== '') {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%$search%")
+                    ->orWhere('author', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%");
+            });
+        }
+
+        // Sort by created_at descending
+        $resources = $query->orderBy('created_at', 'desc')->get();
+
+        return response()->json($resources, 200);
+    }
+
+    /**
+     * Create/store a Resource
      */
     public function store(Request $request)
     {
@@ -51,13 +77,13 @@ class ResourcesController extends Controller
             'cover_image' => 'nullable|image|max:2048',
         ]);
 
-        // Set default cover image based on type if needed
+        // Handle default or uploaded cover images
         if ($validatedData['type'] === 'article') {
             $validatedData['cover_image'] = 'https://www.thesaurus.com/e/wp-content/uploads/2021/11/20211104_articles_1000x562-790x310.png';
         } elseif ($validatedData['type'] === 'document') {
             $validatedData['cover_image'] = 'https://www.usatoday.com/gcdn/-mm-/e7158d03197455651fa5228552643ad388d4da51/c=0-212-1963-1316/local/-/media/2019/09/12/USATODAY/usatsports/digital-signature-concept.jpg?width=660&height=372&fit=crop&format=pjpg&auto=webp';
         } else {
-            // If it's a book and a file was uploaded, store it
+            // It's a book, handle upload if provided
             if ($request->hasFile('cover_image')) {
                 $file = $request->file('cover_image');
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();
@@ -66,7 +92,7 @@ class ResourcesController extends Controller
             }
         }
 
-        // Create the resource
+        // Create resource
         $resource = Resource::create($validatedData);
 
         return response()->json([
@@ -76,7 +102,7 @@ class ResourcesController extends Controller
     }
 
     /**
-     * Return the top three most-read books.
+     * (Optional) Returns top three most-read books, if you still need it
      */
     public function mostReadBooks()
     {
