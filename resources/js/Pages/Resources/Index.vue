@@ -100,8 +100,35 @@
                 </div>
             </div>
 
-            <!-- (Optional) Right Sidebar for "Most Read" or others -->
-            <!-- You could place your "Most Read" code here if desired. -->
+            <!-- MOST READ SIDEBAR -->
+            <div class="mostread w-[220px] pl-6 relative z-10">
+                <h1 class="text-lg text-gray-500 pl-2 mb-4 border-b pb-2">MOST READ</h1>
+                <ol class="list-decimal pl-5 space-y-4">
+                    <li
+                        v-for="mr in mostReadResources"
+                        :key="mr.id"
+                        class="flex items-start space-x-3 hover:bg-gray-100 p-3 rounded-md transition-colors duration-200"
+                    >
+                        <img
+                            :src="mr.cover_image ? mr.cover_image : '/assets/images/pdf.jpg'"
+                            alt="Cover"
+                            class="w-16 h-16 object-cover rounded shadow"
+                        />
+                        <div class="flex-1">
+                            <h3 class="text-md font-medium text-gray-800 leading-tight mb-1">
+                                {{ mr.title }}
+                            </h3>
+                            <p class="text-sm text-gray-500 mb-1">
+                                by {{ mr.author }}
+                            </p>
+                            <p class="text-xs text-gray-400 italic">
+                                Reads: {{ mr.read_count }}
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <!-- END: MOST READ SIDEBAR -->
 
             <!-- Create Resource Modal -->
             <div
@@ -291,6 +318,9 @@ import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/vue/20/solid";
 // ------------------------
 const resources = ref([]);
 
+// "Most Read" resources
+const mostReadResources = ref([]);
+
 // Book detail popup states
 const showBookPopup = ref(false);
 const selectedBookDetail = ref(null);
@@ -316,6 +346,7 @@ const selectedTopic = ref("");
 // ------------------------
 onMounted(() => {
     fetchResources();
+    fetchMostReadResources();
 });
 
 // ------------------------
@@ -327,7 +358,7 @@ const sortedResources = computed(() => {
         // If we can't parse, fallback to 0
         const dateA = Date.parse(a.created_at) || 0;
         const dateB = Date.parse(b.created_at) || 0;
-        return dateB - dateA; // descending (newest first)
+        return dateB - dateA; // descending
     });
 });
 
@@ -344,13 +375,23 @@ async function fetchResources() {
                 topic: selectedTopic.value || undefined,
             },
         });
-        // Just store them, we'll sort in the computed property
         resources.value = response.data;
     } catch (error) {
         console.error("Error fetching resources:", error);
     }
 }
 
+// Fetch top-most read books
+async function fetchMostReadResources() {
+    try {
+        const { data } = await axios.get("/api/resources/most-read");
+        mostReadResources.value = data;
+    } catch (error) {
+        console.error("Error fetching most read resources:", error);
+    }
+}
+
+// When user clicks a resource card
 async function handleResourceClick(resource) {
     if (resource.type !== "book") return; // Only show popup if it's a book
 
@@ -371,7 +412,7 @@ async function handleResourceClick(resource) {
     }
 }
 
-// Create a resource
+// Create a new resource
 async function createResource() {
     try {
         const formData = new FormData();
@@ -395,6 +436,7 @@ async function createResource() {
 
         // Re-fetch data
         fetchResources();
+        fetchMostReadResources(); // If needed, in case new resource has read_count
 
         // Reset form & close modal
         newResource.value = {
@@ -420,7 +462,7 @@ function handleFileUpload(event) {
 // Utility to show date in "YYYY-MM-DD HH:mm:ss" (or whatever you like)
 function formatDate(dateString) {
     if (!dateString) return "";
-    return dateString;
+    return dateString; // or further transform it if desired
 }
 </script>
 
