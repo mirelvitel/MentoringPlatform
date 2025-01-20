@@ -38,6 +38,9 @@
                             <option value="Sport">Sport</option>
                             <option value="Politics">Politics</option>
                             <option value="Mathematics">Mathematics</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Software Development">Software Development</option>
+
                         </select>
                     </div>
 
@@ -305,7 +308,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted,watch  } from "vue";
 import axios from "axios";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import NavLeft from "@/Shared/NavLeft.vue";
@@ -348,7 +351,12 @@ onMounted(() => {
     fetchResources();
     fetchMostReadResources();
 });
-
+// ------------------------
+// Watchers
+// ------------------------
+watch([searchTerm, selectedTopic], () => {
+    fetchResources();
+});
 // ------------------------
 // Computed: sortedResources
 // sorts client-side by created_at (descending)
